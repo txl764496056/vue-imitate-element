@@ -3,7 +3,8 @@
         <input 
         :checked="value===label"
         :disabled="disabled" 
-        @input="radioChange($event)"
+        v-model='model'
+        @input="radioChange"
          type="radio" :name='name' :value="label"/>
         <span class="im-radio-btn"></span>
         <span class="im-radio-txt">
@@ -36,18 +37,39 @@
         },
         data(){
             return {
-                group_parent:null,
-                radioGroup:""
             }
         },
+        computed:{
+            model:{
+                get(){
+                    return this.$parent.$options.componentName==="ImRadioGroup" ? this.$parent.value:this.value;
+                },
+                set(val){
+                    if (this.$parent.$options.componentName==="ImRadioGroup") {
+                        this.$parent.$emit.apply(this.$parent,['input'].concat(val));
+                    } else {
+                        this.$emit('input', val);
+                    }
+                }
+            },
+        },
         methods:{
-            radioChange($event){
-                let val = $event.target.value;
-                this.$emit('input',val);
-                this.$parent.$emit('input',val);
-                // this.$parent.$emit.apply(this.$parent,['handleChange'].concat(this.model));
+            // radioChange($event){
+            //     let val = $event.target.value;
+            //     this.$emit('input',val);
+            //     // 以下3中相同的效果
+            //     // this.$parent.$emit('input',val);
+            //     // this.$parent.$emit('handleChange',val);
+            //     this.$parent.$emit.apply(this.$parent,['handleChange'].concat(val));
+            // },
+            radioChange(){
+                this.$nextTick(()=>{
+                    this.$emit('change',this.model);
+                    // this.$emit('input',val);
+                    this.$parent.$emit.apply(this.$parent,['handleChange'].concat(this.model));
+                })
             }
-        }
+        },
     }
 </script>
 
