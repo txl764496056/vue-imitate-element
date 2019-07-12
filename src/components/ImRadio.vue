@@ -3,7 +3,7 @@
         <input 
         :checked="value===label"
         :disabled="disabled" 
-        @change="radioChange($event)"
+        @input="radioChange($event)"
          type="radio" :name='name' :value="label"/>
         <span class="im-radio-btn"></span>
         <span class="im-radio-txt">
@@ -16,31 +16,14 @@
     export default {
         name:"ImRadio",
         componentName:"ImRadio",
-        model:{
-            prop:'value',
-            event:'change',
-        },
         props:{
             value:{
                 type:[String,Number,Boolean],
-                default(){
-                   if(this.$parent.value&&this.$parent.value!=''){
-                        return this.$parent.value;
-                    }else{
-                        return '';
-                    }
-                }
+                default:""
             },
             name:{
                 type:[String,Number],
-                default(){
-                    console.log(this.getCompoenentParent,'prop');
-                    if(this.$parent.name&&this.$parent.name!=''){
-                        return this.$parent.name;
-                    }else{
-                        return '';
-                    }
-                }
+                default:""
             },
             label:{
                 type:[String,Number,Boolean],
@@ -48,41 +31,21 @@
             },
             disabled:{
                 type:[Boolean],
-                default(){
-                    if(this.$parent.disabled!=='undifined'){
-                        return this.$parent.disabled;
-                    }else{
-                        return false;
-                    } 
-                }
+                default:false
             }
         },
-        mounted(){
-            // console.log(this.getCompoenentParent,'ddd')
-        },
-        computed:{
-            getCompoenentParent(){
-                let name = 'ImRadioGroup';
-                let parent = this.$parent;
-                // console.log(this.$parent);
-                while(parent){
-                    if(parent.$options.componentName!==name){
-                        parent = parent.$parent;
-                    }else{
-                        break;
-                    }
-                }
-                return parent;
-                // return false;
+        data(){
+            return {
+                group_parent:null,
+                radioGroup:""
             }
         },
         methods:{
             radioChange($event){
                 let val = $event.target.value;
-                this.$emit('change',val);
-                if(this.$parent.setValue){
-                    this.$parent.setValue(val);
-                }
+                this.$emit('input',val);
+                this.$parent.$emit('input',val);
+                // this.$parent.$emit.apply(this.$parent,['handleChange'].concat(this.model));
             }
         }
     }
@@ -95,7 +58,7 @@
 }
 
 .im-radio{
-    position:relative;z-index:10;display:inline-block;
+    position:relative;z-index:10;display:inline-block;font-size:14px;
     input{
         position:absolute;left:0;top:0;
         opacity:0;

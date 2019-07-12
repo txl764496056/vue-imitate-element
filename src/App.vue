@@ -29,6 +29,12 @@
   height:100vh;width:100vw;
   display:flex;
 }
+
+@mixin blue-gradient{
+  background-color:rgba(64,158,255,0.2);
+  background-image:linear-gradient(45deg,#fff 0,#fff 40%,transparent 40%,transparent 50%,#fff 50%,#fff 90%,transparent 90%,transparent 100%);
+  background-size:5px 5px;
+}
 #nav {
   width:220px; overflow-y:auto;
   text-align:right;
@@ -40,9 +46,7 @@
       color: $theme-color;
       font-weight:bold;letter-spacing: 1px;
       box-shadow:0 0 6px rgba(64,158,255,0.3);
-      background-color:rgba(64,158,255,0.2);
-      background-image:linear-gradient(45deg,#fff 0,#fff 40%,transparent 40%,transparent 50%,#fff 50%,#fff 90%,transparent 90%,transparent 100%);
-      background-size:5px 5px;
+      @include blue-gradient;
     }
     &.router-link-exact-active ,&.router-link-exact-active+a{
       border:none;
@@ -51,9 +55,19 @@
   }
 }
 .content{
-  border-left:10px solid #eee;flex:1;text-align:left;
+  border-left:10px solid #eee;flex:1;text-align:left;position:relative;padding-top:50px;
   @at-root .compare-title{
-    display:flex;
+    display:flex;position:absolute;top:0;right:0;left:0;
+    p{
+      flex:1;text-align:center;font-size:22px;color:#3f8fe2;@include blue-gradient;padding:10px;
+      border-bottom:2px solid #cee3f9;
+      &:first-of-type{
+        margin-right:3px;
+      }
+      &:not(:first-of-type){
+        margin-left:3px;
+      }
+    }
   }
 }
 

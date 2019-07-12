@@ -8,15 +8,24 @@ $theme-color:#409eff;
 
 .title{
     font-size:16px;margin:10px 0;letter-spacing:1px;font-weight:bold;background-color:#f1f1f1;color:#fff;border-left:5px solid $theme-color;padding:5px 10px;color:#000;
-    // &::before{
-    //     $size:14px;
-    //     content:"";width:$size;height:$size;display:inline-block;background-color:$theme-color;transform:rotate(45deg);margin-right:10px;box-shadow:2px -2px 0 #99dddd;
-    // }
+    &:not(:first-of-type){margin-top:20px;}
 }
 
 .title2{
     color:#000;font-size:14px;font-weight:bold;margin-top:10px;margin-bottom:5px;;
     &::before{
         content:attr(data-index);display:inline-block;background-color:#f0b104;color:#fff;border-radius:10px;padding:1px 7px;margin-right:3px;font-weight:normal;
+    }
+}
+
+
+.group-unit{
+    box-shadow:0 0 3px rgba(125,125,125,0.15);margin:10px 0;padding:8px;
+  }
+  
+.remark{
+    font-size:14px;margin:5px;color:#999;
+    span{
+        color:rgb(197, 3, 3);
     }
 }

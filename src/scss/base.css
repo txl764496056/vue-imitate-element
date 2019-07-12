@@ -24,6 +24,10 @@
   color: #000;
 }
 
+.title:not(:first-of-type) {
+  margin-top: 20px;
+}
+
 .title2 {
   color: #000;
   font-size: 14px;
@@ -41,4 +45,20 @@
   padding: 1px 7px;
   margin-right: 3px;
   font-weight: normal;
+}
+
+.group-unit {
+  box-shadow: 0 0 3px rgba(125, 125, 125, 0.15);
+  margin: 10px 0;
+  padding: 8px;
+}
+
+.remark {
+  font-size: 14px;
+  margin: 5px;
+  color: #999;
+}
+
+.remark span {
+  color: #c50303;
 }

@@ -1,5 +1,5 @@
 <template>
-    <div @change="$emit('change',temp)" class="img-radio-group">
+    <div class="img-radio-group">
         <slot></slot>
     </div>
 </template>
@@ -8,10 +8,6 @@
     export default {
         name:"ImRadioGroup",
         componentName:"ImRadioGroup",
-        model:{
-            prop:['value'],
-            event:'change'
-        },
         props:{
             value:{
                 type:[String,Number,Boolean],
@@ -31,10 +27,12 @@
                 temp:this.value
             }
         },
+        created(){
+            // this.$on('handleChange',value=>{
+            //     this.$emit('change',value);
+            // })
+        },
         methods:{
-            setValue(val){
-                this.temp = val;
-            }
         }
     }
 </script>
