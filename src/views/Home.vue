@@ -79,6 +79,7 @@
               <im-radio 
               v-for="item in im_radio_group"
               :key="item.label"
+              v-model="select4"
               :disabled="item.disabled"
               :label="item.label">选项{{item.label}}</im-radio>
           </im-radio-group>
@@ -132,10 +133,11 @@ export default {
       im_radio_group_selected2:2,
       im_radio_group_selected3:3,
       im_radio_group:[
-        {label:1,disabled:true},
-        {label:2,disabled:false},
-        {label:3,disabled:false}
+        {label:1,disabled:true,select:3},
+        {label:2,disabled:false,select:3},
+        {label:3,disabled:false,select:3}
       ],
+      select4:3
     }
   },
   mounted(){

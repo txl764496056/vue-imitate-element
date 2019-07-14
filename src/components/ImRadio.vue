@@ -50,6 +50,7 @@
                     } else {
                         this.$emit('input', val);
                     }
+
                 }
             },
         },
@@ -64,9 +65,8 @@
             // },
             radioChange(){
                 this.$nextTick(()=>{
-                    this.$emit('change',this.model);
-                    // this.$emit('input',val);
-                    this.$parent.$emit.apply(this.$parent,['handleChange'].concat(this.model));
+                    // this.$emit('input',this.model);
+                    // this.$parent.$emit.apply(this.$parent,['handleChange'].concat(this.model));
                 })
             }
         },

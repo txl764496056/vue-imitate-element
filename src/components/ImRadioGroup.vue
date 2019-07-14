@@ -33,9 +33,9 @@
             }
         },
         created(){
-            this.$on('handleChange',value=>{
-                this.$emit('change',value);
-            })
+            // this.$on('handleChange',value=>{
+            //     this.$emit('change',value);
+            // })
         },
         methods:{
         }
