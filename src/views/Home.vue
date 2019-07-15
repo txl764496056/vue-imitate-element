@@ -1,7 +1,5 @@
 <template>
   <div class="home compare-box">
-
-
     <div class="el-content">
       <!-- 选中/禁用 -->
       <div class="title">选中/禁用</div>

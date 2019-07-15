@@ -1,9 +1,17 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <h2>im components</h2>
-        <router-link to="/">单选框</router-link> 
-        <router-link to="/About">About</router-link>
+    <div id="nav" :class="{'hidden':!is_show_menu}">
+       
+        <div class="menu" @click="showMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div v-show="is_show_menu">
+          <h2>im components</h2>
+          <router-link to="/">单选框</router-link> 
+          <router-link to="/Checkbox">复选框</router-link>
+        </div>
     </div>
     <div class="content">
       <div class="compare-title">
@@ -14,6 +22,22 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  name:"App",
+  data(){
+    return {
+      is_show_menu:true
+    }
+  },
+  methods:{
+    showMenu(){
+      this.is_show_menu = !this.is_show_menu;
+    }
+  }
+}
+</script>
+
 
 <style lang="scss">
 
@@ -36,9 +60,12 @@
   background-size:5px 5px;
 }
 #nav {
-  width:220px; overflow-y:auto;
-  text-align:right;
-  h2{text-align:center;padding:15px;font-size:22px;}
+  width:220px; overflow-y:auto;position:relative;
+  text-align:right;transition:width 0.5s;
+  &.hidden{
+    width:40px;overflow:hidden;
+  }
+  h2{text-align:center;padding:15px;font-size:22px;margin-top:20px;}
   a {
     font-weight: normal;display:block;padding:10px 15px;
     color: #2c3e50;text-decoration:none;border-top:1px solid #eee;
@@ -69,6 +96,13 @@
       }
     }
   }
+}
+.menu{
+  position:absolute;top:10px;right:10px;
+  span{
+    display:block;background-color:$theme-color;
+    height:3px;width:20px;margin:3px 0;border-radius:3px;
+    }
 }
 
 </style>

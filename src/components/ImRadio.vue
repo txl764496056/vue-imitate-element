@@ -90,7 +90,7 @@
 }
 
 .im-radio{
-    position:relative;z-index:10;display:inline-block;font-size:14px;
+    position:relative;z-index:10;display:inline-block;font-size:14px;user-select:none;color:$color-66;
     input{
         position:absolute;left:0;top:0;
         opacity:0;
