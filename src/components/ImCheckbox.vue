@@ -32,9 +32,9 @@
 <style lang="scss" scoped>
 @import '@/scss/base.scss';
 .im-checkbox{
-    user-select: none;display:flex;align-items:center;color:$color-66;
+    user-select: none;display:inline-flex;align-items:center;color:$color-66;
     span{
-        width:15px;height:15px;border-radius:2px;border:1px solid #ddd;display: inline-block;background-color:#fff;margin-right:5px;font-size:14px;
+        width:14px;height:14px;border-radius:2px;border:1px solid #ddd;display: inline-block;background-color:#fff;margin-right:5px;font-size:14px;
         &::before{
             background-color:transparent;content:"";width:60%;height:30%;display:inline-block;
             font-size:14px;
