@@ -2,9 +2,8 @@
     <label name="im-radio" class="im-radio">
         <input 
         :checked="value===label"
-        :disabled="disabled" 
+        :disabled="isDisable" 
         v-model='model'
-        @input="radioChange"
          type="radio" :name='name' :value="label"/>
         <span class="im-radio-btn"></span>
         <span class="im-radio-txt">
@@ -42,19 +41,36 @@
         computed:{
             model:{
                 get(){
-                    return this.$parent.$options.componentName==="ImRadioGroup" ? this.$parent.value:this.value;
+                    return this.isGroup() ? this.radio_parent.value:this.value;
                 },
                 set(val){
-                    if (this.$parent.$options.componentName==="ImRadioGroup") {
-                        this.$parent.$emit.apply(this.$parent,['input'].concat(val));
+                    if (this.isGroup()) {
+                        this.radio_parent.$emit.apply(this.radio_parent,['input'].concat(val));
                     } else {
                         this.$emit('input', val);
                     }
 
                 }
             },
+            isDisable:{
+                get(){
+                    return this.isGroup()&&this.radio_parent.disabled ? this.radio_parent.disabled:this.disabled;
+                }
+            }
         },
         methods:{
+            isGroup(){
+                let parent = this.$parent;
+                while(parent){
+                    if(parent.$options.componentName==="ImRadioGroup"){
+                        this.radio_parent = parent;
+                        return true;
+                    }else{
+                        parent = parent.$parent;
+                    }
+                }
+                return false;
+            }
             // radioChange($event){
             //     let val = $event.target.value;
             //     this.$emit('input',val);
@@ -63,12 +79,6 @@
             //     // this.$parent.$emit('handleChange',val);
             //     this.$parent.$emit.apply(this.$parent,['handleChange'].concat(val));
             // },
-            radioChange(){
-                this.$nextTick(()=>{
-                    // this.$emit('input',this.model);
-                    // this.$parent.$emit.apply(this.$parent,['handleChange'].concat(this.model));
-                })
-            }
         },
     }
 </script>

@@ -40,19 +40,35 @@
         <!-- 单选组 -->
         <div class="title">单选组</div>
 
-        <!-- 禁用属性在组标签上 -->
-        <div class="title2" data-index="1">禁用属性在 组(父)标签上</div>
+        <div class="title2" data-index="1">禁用属性在 组(父im-radio-group)标签上</div>
         <div class="group-unit">
+          <p class="tips">这组radio有2个父组件</p>
             <im-radio-group
             v-model="im_radio_group_selected1"
             name="'im-group1'">
-              <!-- 嵌套一个父组件,检测子组件在获取父的时候是否有影响 -->
-              <!-- <empty-test>  -->
                 <im-radio 
                 v-for="item in im_radio_group"
                 :key="item.label"
                 :label="item.label">选项{{item.label}}</im-radio>
-              <!-- </empty-test> -->
+            </im-radio-group>
+            <p class="remark">显示选中选项的标签值：<span>{{im_radio_group_selected1}}</span></p>
+        </div>
+
+        <!-- 禁用属性在组标签上 -->
+        <div class="title2" data-index="2">禁用属性在 组(父im-radio-group)标签上</div>
+        <div class="group-unit">
+          <p class="tips">这组radio有2个父组件</p>
+            <im-radio-group
+            v-model="im_radio_group_selected1"
+            :disabled="true"
+            name="'im-group1'">
+              <!-- 嵌套一个父组件,检测子组件在获取父的时候是否有影响 -->
+              <empty-test> 
+                <im-radio 
+                v-for="item in im_radio_group"
+                :key="item.label"
+                :label="item.label">选项{{item.label}}</im-radio>
+              </empty-test>
             </im-radio-group>
             <p class="remark">显示选中选项的标签值：<span>{{im_radio_group_selected1}}</span></p>
         </div>
@@ -71,7 +87,7 @@
         </div>
 
         <!-- 禁用属性在每个子标签上 -->
-        <div class="title2" data-index="22">禁用属性在 子标签上</div>
+        <div class="title2" data-index="3">禁用属性在 子标签上</div>
         <div class="group-unit">
           <im-radio-group
           v-model="im_radio_group_selected3"
@@ -79,7 +95,6 @@
               <im-radio 
               v-for="item in im_radio_group"
               :key="item.label"
-              v-model="select4"
               :disabled="item.disabled"
               :label="item.label">选项{{item.label}}</im-radio>
           </im-radio-group>
@@ -133,11 +148,10 @@ export default {
       im_radio_group_selected2:2,
       im_radio_group_selected3:3,
       im_radio_group:[
-        {label:1,disabled:true,select:3},
-        {label:2,disabled:false,select:3},
-        {label:3,disabled:false,select:3}
+        {label:1,disabled:true},
+        {label:2,disabled:false},
+        {label:3,disabled:false}
       ],
-      select4:3
     }
   },
   mounted(){
