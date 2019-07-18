@@ -7,16 +7,19 @@
             v-for="item in el_checkbox"
             :key="item.label"
             :name="item.name"
-            :label="item.label">选项{{item.label}}</el-checkbox>
+            :disabled="item.disabled"
+            :label="item.label"
+            v-model="item.checked">选项{{item.label}}</el-checkbox>
         </div>
         <div class="im-content">
             <div class="title">选中/禁用</div>
-            <!-- <im-checkbox>选项</im-checkbox> -->
             <im-checkbox
             v-for="item in im_checkbox"
             :key="item.label"
             :name="item.name"
-            :label="item.label">选项{{item.label}}</im-checkbox>
+            :disabled="item.disabled"
+            :label="item.label"
+            v-model="item.checked">选项{{item.label}}</im-checkbox>
         </div>
     </div>
 </template>
@@ -31,17 +34,15 @@ import ImCheckbox from '@/components/ImCheckbox.vue'
         data(){
             return {
                 // 选中 禁用
-                el_checkbox_select:2,
                 el_checkbox:[
-                    {name:'el_checkbox1',disabled:false,label:1},
-                    {name:'el_checkbox1',disabled:true,label:2},
-                    {name:'el_checkbox1',disabled:false,label:3}
+                    {name:'el_checkbox1',disabled:false,label:1,checked:true},
+                    {name:'el_checkbox1',disabled:true,label:2,checked:false},
+                    {name:'el_checkbox1',disabled:false,label:3,checked:true}
                 ],
-                im_checkbox_select:2,
                 im_checkbox:[
-                    {name:'el_checkbox2',disabled:false,label:1},
-                    {name:'el_checkbox2',disabled:true,label:2},
-                    {name:'el_checkbox2',disabled:false,label:3}
+                    {name:'el_checkbox2',disabled:false,label:1,checked:true},
+                    {name:'el_checkbox2',disabled:true,label:2,checked:true},
+                    {name:'el_checkbox2',disabled:false,label:3,checked:false}
                 ]
             }
         }

@@ -3,7 +3,9 @@
         <input type="checkbox" 
         :name="name"
         :disabled="disabled"
-        :label="label"/>
+        :value="label"
+        :checked="isChecked"
+        @change="checkChange"/>
         <span></span>
         <slot></slot>
     </label>
@@ -12,6 +14,10 @@
 <script>
     export default {
         name:"ImCheckbox",
+        model:{
+            prop:['checked'],
+            event:'change'
+        },
         props:{
             name:{
                 type:String,
@@ -21,9 +27,27 @@
                 type:Boolean,
                 default:false
             },
+            checked:{
+                type:Boolean,
+                default:false
+            },
             label:{
                 type:[String,Number,Boolean],
                 default:""
+            }
+        },
+        data(){
+            return {
+                isChecked:false
+            }
+        },
+        mounted(){
+            this.isChecked = this.checked;
+        },
+        methods:{
+            checkChange(){
+                this.isChecked = !this.isChecked;
+                this.$emit('change', this.isChecked);
             }
         }
     }
@@ -48,5 +72,7 @@
     input{opacity:0;width:0;height:0;}
     input:checked+span{background-color:$theme-color;border-color:$theme-color;}
     input:checked+span::before{border-color:#fff;}
+    input:disabled:checked+span{background-color:theme-color(0.1);border-color:$color-dd;}
+    input:disabled:checked+span::before{border-color:$color-bb;}
 }
 </style>
