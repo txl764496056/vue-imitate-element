@@ -48,6 +48,7 @@
             checkChange(){
                 this.isChecked = !this.isChecked;
                 this.$emit('change', this.isChecked);
+                this.$parent.$emit('change',this.label);
             }
         }
     }
@@ -72,7 +73,7 @@
     input{opacity:0;width:0;height:0;}
     input:checked+span{background-color:$theme-color;border-color:$theme-color;}
     input:checked+span::before{border-color:#fff;}
-    input:disabled:checked+span{background-color:theme-color(0.1);border-color:$color-dd;}
+    input:disabled:checked+span,input:disabled+span{background-color:theme-color(0.1);border-color:$color-dd;}
     input:disabled:checked+span::before{border-color:$color-bb;}
 }
 </style>
