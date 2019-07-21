@@ -22,23 +22,6 @@
                 default:false
             }
         },
-        model:{
-            get(){
-                return 'group-model'
-            }
-        },
-        data(){
-            return {
-                temp:this.value
-            }
-        },
-        created(){
-            // this.$on('handleChange',value=>{
-            //     this.$emit('change',value);
-            // })
-        },
-        methods:{
-        }
     }
 </script>
 

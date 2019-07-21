@@ -1,10 +1,10 @@
 <template>
-    <label name="im-radio" class="im-radio">
+    <label class="im-radio">
         <input 
         :checked="value===label"
         :disabled="isDisable" 
         v-model='model'
-         type="radio" :name='name' :value="label"/>
+         type="radio" :name='radioName' :value="label"/>
         <span class="im-radio-btn"></span>
         <span class="im-radio-txt">
             <slot></slot>
@@ -52,10 +52,11 @@
 
                 }
             },
-            isDisable:{
-                get(){
-                    return this.isGroup()&&this.radio_parent.disabled ? this.radio_parent.disabled:this.disabled;
-                }
+            isDisable(){
+                return this.isGroup()&&this.radio_parent.disabled ? this.radio_parent.disabled:this.disabled;
+            },
+            radioName(){
+                return this.isGroup()&&this.radio_parent.name ? this.radio_parent.name:this.name;
             }
         },
         methods:{

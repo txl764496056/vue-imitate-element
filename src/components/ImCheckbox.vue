@@ -1,11 +1,12 @@
 <template>
     <label class="im-checkbox">
         <input type="checkbox" 
-        :name="name"
-        :disabled="disabled"
+        :name="checkboxName"
+        :disabled="isDisabled"
         :value="label"
         :checked="isChecked"
-        @change="checkChange"/>
+        v-model="isChecked"
+        />
         <span></span>
         <slot></slot>
     </label>
@@ -38,17 +39,51 @@
         },
         data(){
             return {
-                isChecked:false
+                group_parent:null
             }
         },
-        mounted(){
-            this.isChecked = this.checked;
+        computed:{
+            isChecked:{
+                get(){
+                    if(this.isGroup()){
+                        let checked_list = this.group_parent.checked_list;
+                        for(let i=0;i<checked_list.length;i++){
+                            if(checked_list[i]===this.label){
+                                return true;
+                            }
+                        }
+                        return false;
+                    }else{
+                        return this.checked;
+                    }
+                },
+                set(val){
+                    if(this.isGroup()){
+                        this.group_parent.$emit('changeCheckedList',this.label);
+                    }else{
+                        this.$emit('change', val);
+                    }
+                }
+            },
+            isDisabled(){
+                return this.isGroup()&&this.group_parent.disabled ? this.group_parent.disabled:this.disabled;
+            },
+            checkboxName(){
+                return this.isGroup()&&this.group_parent.name ? this.group_parent.name:this.name;
+            },
         },
         methods:{
-            checkChange(){
-                this.isChecked = !this.isChecked;
-                this.$emit('change', this.isChecked);
-                this.$parent.$emit('change',this.label);
+            isGroup(){
+                let parent = this.$parent;
+                while(parent){
+                    if(parent.$options.componentName!='ImCheckGroup'){
+                        parent = parent.$parent;
+                    }else{
+                        this.group_parent = parent;
+                        return true;
+                    }
+                }
+                return false;
             }
         }
     }

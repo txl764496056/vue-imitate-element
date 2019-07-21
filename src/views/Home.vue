@@ -59,7 +59,7 @@
             <im-radio-group
             v-model="im_radio_group_selected1"
             :disabled="true"
-            name="'im-group1'">
+            :name="'im-group1'">
               <!-- 嵌套一个父组件,检测子组件在获取父的时候是否有影响 -->
               <empty-test> 
                 <im-radio 
@@ -75,7 +75,7 @@
             <im-radio-group
             v-model="im_radio_group_selected2"
             :disabled="true"
-            name="'im-group2'">
+            :name="'im-group2'">
                 <im-radio 
                 v-for="item in im_radio_group"
                 :key="item.label"
@@ -89,7 +89,7 @@
         <div class="group-unit">
           <im-radio-group
           v-model="im_radio_group_selected3"
-          name="'im-group3'">
+          :name="'im-group3'">
               <im-radio 
               v-for="item in im_radio_group"
               :key="item.label"
