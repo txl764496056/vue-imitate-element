@@ -1,5 +1,5 @@
 <template>
-    <label class="im-checkbox">
+    <label class="im-checkbox" :class="{'light':isChecked&&!isDisabled}">
         <input type="checkbox" 
         :name="checkboxName"
         :disabled="isDisabled"
@@ -110,5 +110,8 @@
     input:checked+span::before{border-color:#fff;}
     input:disabled:checked+span,input:disabled+span{background-color:theme-color(0.1);border-color:$color-dd;}
     input:disabled:checked+span::before{border-color:$color-bb;}
+    &.light{
+        color:$theme-color;
+    }
 }
 </style>

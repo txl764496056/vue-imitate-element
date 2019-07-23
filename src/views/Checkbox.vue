@@ -1,5 +1,6 @@
 <template>
     <div class="compare-box">
+        <!-- element start -->
         <div class="el-content">
             <div class="title">选中/禁用</div>
             <!-- <el-checkbox>选项</el-checkbox> -->
@@ -29,7 +30,19 @@
                     :label="item.label"
                     v-model="item.checked">{{item.label}}</el-checkbox>
             </el-checkbox-group>
+
+            <div class="title">indeterminate状态</div>
+            <!-- @change="handleCheckAllChange" -->
+            <el-checkbox :indeterminate="el_indeterminate.isIndeterminate" 
+            v-model="el_indeterminate.checkAll" >全选</el-checkbox>
+            <!-- @change="handleCheckedCitiesChange" -->
+            <el-checkbox-group v-model="el_indeterminate.checkedCities" >
+                <el-checkbox v-for="city in el_indeterminate.cities" :label="city" :key="city">{{city}}</el-checkbox>
+            </el-checkbox-group>
+
         </div>
+
+        <!-- element end -->
 
         <div class="im-content">
             
@@ -157,6 +170,13 @@ import EmptyTest from '@/components/EmptyTest.vue'
                     {disabled:true,label:"选项2"},
                     {disabled:false,label:"选项3"}
                 ],
+                // indeterminate状态
+                el_indeterminate:{
+                    checkAll: false,
+                    checkedCities: ['上海', '北京'],
+                    cities: ['上海', '北京', '广州', '深圳'],
+                    isIndeterminate: true
+                }
             }
         }
     }

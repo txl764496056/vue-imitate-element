@@ -1,7 +1,7 @@
 <template>
-    <label class="im-radio">
+    <label class="im-radio" :class="{'light':checked&&!isDisable}">
         <input 
-        :checked="value===label"
+        :checked="checked"
         :disabled="isDisable" 
         v-model='model'
          type="radio" :name='radioName' :value="label"/>
@@ -57,6 +57,10 @@
             },
             radioName(){
                 return this.isGroup()&&this.radio_parent.name ? this.radio_parent.name:this.name;
+            },
+            checked(){
+               let label = this.isGroup()&&this.radio_parent.label ? this.radio_parent.label:this.label;
+                return this.model===label;
             }
         },
         methods:{
@@ -103,6 +107,9 @@
     input:disabled+.im-radio-btn{background-color:#eee;}
     input:checked:disabled+.im-radio-btn{@include border-dd;}
     input:checked:disabled+.im-radio-btn::before{opacity:1;background-color:#bbb;}
+    &.light{
+        color:$theme-color;
+    }
 
     input,.im-radio-btn,.im-radio-txt{vertical-align: middle;}
 }
