@@ -1,7 +1,7 @@
 <template>
   <div id="app">
+    <!-- 导航 start-->
     <div id="nav" :class="{'hidden':!is_show_menu}">
-       
         <div class="menu" @click="showMenu">
           <span></span>
           <span></span>
@@ -9,17 +9,33 @@
         </div>
         <div v-show="is_show_menu">
           <h2>im components</h2>
-          <router-link to="/">单选框</router-link> 
+          <router-link to="/">首页</router-link> 
+          <router-link to="/radio">单选框</router-link> 
           <router-link to="/Checkbox">复选框</router-link>
         </div>
     </div>
+    <!-- 导航 end-->
+
+    <!-- content start -->
     <div class="content">
       <div class="compare-title">
         <p>element compoennets</p>
         <p>im components</p>
       </div>
-      <router-view/>
+      <div class="compare-box">
+        <router-view></router-view>
+        <!-- element 案例 -->
+        <div class="el-content">
+          <router-view name="el-router-view"/>
+        </div>
+        <!-- im-components 案例 -->
+        <div class="im-content">
+          <router-view name="im-router-view"/>
+        </div>
+      </div>
     </div>
+    <!-- content end -->
+
   </div>
 </template>
 <script>

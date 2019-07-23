@@ -1,5 +1,6 @@
 <template>
-    <label class="im-checkbox" :class="{'light':isChecked&&!isDisabled}">
+    <label class="im-checkbox" 
+    :class="{'light':isChecked&&!isDisabled,'helf':!isChecked&&!isDisabled&&indeterminate}">
         <input type="checkbox" 
         :name="checkboxName"
         :disabled="isDisabled"
@@ -35,6 +36,11 @@
             label:{
                 type:[String,Number,Boolean],
                 default:""
+            },
+            // true：全选（包括全选中，全不选中）,false：半选
+            indeterminate:{
+                type:Boolean,
+                default:false
             }
         },
         data(){
@@ -112,6 +118,16 @@
     input:disabled:checked+span::before{border-color:$color-bb;}
     &.light{
         color:$theme-color;
+    }
+    // 半选
+    &.helf{
+        input+span{
+            background-color:$theme-color;border-color:$theme-color;
+            &::before{
+                border-left:none;border-color:#fff;
+                transform:rotate(0) translate(40%,-100%);
+            }
+        }
     }
 }
 </style>
