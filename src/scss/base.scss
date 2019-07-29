@@ -1,4 +1,5 @@
 $theme-color:#409eff;
+$placeholder-color:#bbb;
 $color-66:#666;
 $color-dd:#ddd;
 $color-ee:#eee;
@@ -7,6 +8,11 @@ $color-bb:#bbb;
 // 主题颜色 自定义透明度
 @function theme-color($num){
     @return rgba(64,158,255,$num);
+}
+
+// 中间灰  自定义透明度
+@function middle-gray($num){
+    @return rgba(125,125,125,$num);
 }
 
 .compare-box{

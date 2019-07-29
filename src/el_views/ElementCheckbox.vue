@@ -41,6 +41,19 @@
             :key="item.label">{{item.label}}</el-checkbox>
         </el-checkbox-group>
 
+        <div class="title">可选数量限制</div>
+        <el-checkbox-group
+        v-model="el_checkList4"
+        :min="2"
+        :max="4">
+            <el-checkbox 
+            v-for="item in el_checkbox_group4"
+            :label="item.label"
+            :key="item.label">
+            {{item.label}}
+            </el-checkbox>
+        </el-checkbox-group>
+
     </div>
 </template>
 
@@ -81,6 +94,23 @@
                     {name:'el_checkbox4',disabled:true,label:"选项2"},
                     {name:'el_checkbox4',disabled:false,label:"选项3"}
                 ],
+                el_checkList4:['选项2'],
+                el_checkbox_group4:[
+                    {name:'el_checkbox4',disabled:false,label:"选项1"},
+                    {name:'el_checkbox4',disabled:true,label:"选项2"},
+                    {name:'el_checkbox4',disabled:false,label:"选项3"},
+                    {name:'el_checkbox4',disabled:false,label:"选项4"},
+                    {name:'el_checkbox4',disabled:false,label:"选项5"},
+                    {name:'el_checkbox4',disabled:false,label:"选项6"}
+                ],
+                // el_checkbox_group4:[
+                //    "选项1",
+                //    "选项2",
+                //    "选项3",
+                //    "选项4",
+                //    "选项5",
+                //    "选项6"
+                // ],
             }
         },
         methods:{
@@ -107,5 +137,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+.el-checkbox{
+    margin-bottom:5px;
+}
 </style>

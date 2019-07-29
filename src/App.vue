@@ -12,6 +12,7 @@
           <router-link to="/">首页</router-link> 
           <router-link to="/radio">单选框</router-link> 
           <router-link to="/Checkbox">复选框</router-link>
+          <router-link to="/input">输入框(input/textarea)</router-link>
         </div>
     </div>
     <!-- 导航 end-->

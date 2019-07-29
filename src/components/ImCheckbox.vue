@@ -71,8 +71,20 @@
                     }
                 }
             },
+            /**
+             * 最小选项数限制：
+             *  1、已选择数量<=min  ，则已选择的禁用（表示不能被取消选择）
+             *  2、必须是已选择的禁用，未被选择的是可选的
+             * 最大选项数限制：
+             *  1、已选择数量>=max,则还未选择的禁用（表示不能再多选择）
+             *  2、必须是未选择的禁用
+             */
             isDisabled(){
-                return this.isGroup()&&this.group_parent.disabled ? this.group_parent.disabled:this.disabled;
+                 return this.isGroup() ? (
+                     this.group_parent.disabled ||
+                     ((this.group_parent.min>=this.group_parent.checked_list.length)&&this.isChecked) ||
+                     (this.group_parent.max<=this.group_parent.checked_list.length&&!this.isChecked)
+                     ):this.disabled;
             },
             checkboxName(){
                 return this.isGroup()&&this.group_parent.name ? this.group_parent.name:this.name;

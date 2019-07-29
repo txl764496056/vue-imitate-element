@@ -78,6 +78,19 @@
             </im-checkbox-group>
         </div>
 
+        <div class="title">可选数量限制</div>
+        <im-checkbox-group
+        v-model="im_checkList6"
+        :min="2"
+        :max="4">
+            <im-checkbox 
+            v-for="item in im_checkbox_group6"
+            :label="item.label"
+            :key="item.label">
+            {{item.label}}
+            </im-checkbox>
+        </im-checkbox-group>
+
     </div>
 </template>
 
@@ -135,6 +148,15 @@ import EmptyTest from '@/components/EmptyTest.vue'
                     {disabled:false,label:"选项1"},
                     {disabled:true,label:"选项2"},
                     {disabled:false,label:"选项3"}
+                ],
+                im_checkList6:['选项2'],
+                im_checkbox_group6:[
+                    {disabled:false,label:"选项1"},
+                    {disabled:true,label:"选项2"},
+                    {disabled:false,label:"选项3"},
+                    {disabled:false,label:"选项4"},
+                    {disabled:false,label:"选项5"},
+                    {disabled:false,label:"选项6"}
                 ],
             }
         },

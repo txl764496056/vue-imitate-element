@@ -35,10 +35,17 @@ export default new Router({
     {
       path:'/checkbox',
       name:'checkbox',
-      // component: () => import('./views/Checkbox.vue')
       components:{
         'el-router-view':() => import('./el_views/ElementCheckbox.vue'),
         'im-router-view':() => import('./views/ImitateCheckbox.vue')
+      }
+    },
+    {
+      path:"/input",
+      name:"input",
+      components:{
+        "el-router-view":() => import("./el_views/ElementInput.vue"),
+        "im-router-view":() => import("./views/ImitateInput.vue")
       }
     }
   ]
