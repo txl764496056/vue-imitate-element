@@ -67,3 +67,35 @@
   color: #d63c3c;
   font-size: 12px;
 }
+
+.clear-btn {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  margin-top: -8px;
+  border: 1px solid #bbb;
+  border-radius: 50%;
+}
+
+.clear-btn::after, .clear-btn::before {
+  height: 1px;
+  background-color: #bbb;
+  width: 80%;
+  content: "";
+  display: inline-block;
+  position: absolute;
+  transform-origin: center center;
+  bottom: 50%;
+  left: 10%;
+}
+
+.clear-btn::after {
+  transform: rotate(45deg);
+}
+
+.clear-btn::before {
+  transform: rotate(-45deg);
+}
