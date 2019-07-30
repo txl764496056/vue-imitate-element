@@ -68,19 +68,16 @@
   font-size: 12px;
 }
 
-.clear-btn {
+.im-icon-clear {
   display: inline-block;
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  margin-top: -8px;
+  width: 12px;
+  height: 12px;
+  position: relative;
   border: 1px solid #bbb;
   border-radius: 50%;
 }
 
-.clear-btn::after, .clear-btn::before {
+.im-icon-clear::after, .im-icon-clear::before {
   height: 1px;
   background-color: #bbb;
   width: 80%;
@@ -89,13 +86,48 @@
   position: absolute;
   transform-origin: center center;
   bottom: 50%;
-  left: 10%;
+  left: 11%;
 }
 
-.clear-btn::after {
+.im-icon-clear::after {
   transform: rotate(45deg);
 }
 
-.clear-btn::before {
+.im-icon-clear::before {
   transform: rotate(-45deg);
+}
+
+.im-icon-pass {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #bbb;
+  width: 16px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.im-icon-pass.hide::before {
+  border: 1px solid #bbb;
+  background-color: transparent;
+}
+
+.im-icon-pass.hide::after {
+  content: "";
+  display: inline-block;
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  transform: rotate(45deg);
+  background-color: #bbb;
+}
+
+.im-icon-pass::before {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #bbb;
 }

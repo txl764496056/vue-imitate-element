@@ -9,7 +9,17 @@
         <div class="title">清空</div>
         <im-input v-model="im_input3" clearable  placeholder="请输入内容"></im-input>
 
-        <button @click="changeInput1">click</button>
+        <div class="title">密码</div>
+        <im-input v-model="im_input4" clearable show-password  type="password" placeholder="请输入内容"></im-input>
+
+        <div class="title">文本域</div>
+        <im-input v-model="im_input5" type="textarea" placeholder="请输入内容"></im-input>
+
+        <div class="title">文本域-禁用</div>
+        <im-input v-model="im_input5" type="textarea" disabled placeholder="请输入内容"></im-input>
+
+        <div class="title">文本域-自适应高度</div>
+        <im-input v-model="im_input5" type="textarea" autosize placeholder="请输入内容"></im-input>
 
     </div>
 </template>
@@ -25,7 +35,9 @@ import ImInput from "../components/ImInput.vue"
             return {
                 im_input1:"",
                 im_input2:"",
-                im_input3:""
+                im_input3:"",
+                im_input4:"",
+                im_input5:""
             }
         },
     }
