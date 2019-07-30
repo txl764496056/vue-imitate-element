@@ -9,6 +9,8 @@
         <div class="title">清空</div>
         <im-input v-model="im_input3" clearable  placeholder="请输入内容"></im-input>
 
+        <button @click="changeInput1">click</button>
+
     </div>
 </template>
 
@@ -25,7 +27,7 @@ import ImInput from "../components/ImInput.vue"
                 im_input2:"",
                 im_input3:""
             }
-        }
+        },
     }
 </script>
 

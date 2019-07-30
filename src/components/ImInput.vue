@@ -2,12 +2,9 @@
     <div class="im-input">
         <input  
         v-bind="$attrs"
-        :value="value"
-         @focus="inputFocus"
-         @blur="inputBlur"
-         @change="inputChange"
+        @change="inputChange"
         />
-        <i class="clear-btn" v-show="isShowClear"></i>
+        <i class="clear-btn" v-show="clearable"></i>
     </div>
 </template>
 
@@ -26,20 +23,19 @@
                 default:false
             }
         },
-        data(){
-            return {
-                isShowClear:false
-            }
+        computed:{
+            isShowClear(){
+                return this.value!="";
+            },
         },
         methods:{
             inputChange(evt){
                 this.$emit('change',evt.target.value);
             },
-            inputFocus(){
-                this.isShowClear = true;
-            },
-            inputBlur(){
-                this.isShowClear = false;
+        },
+        watch:{
+            value(val){
+                console.log(val)
             }
         }
     }
