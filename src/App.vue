@@ -13,6 +13,7 @@
           <router-link to="/radio">单选框</router-link> 
           <router-link to="/Checkbox">复选框</router-link>
           <router-link to="/input">输入框(input/textarea)</router-link>
+          <router-link to="/select">选择器</router-link>
         </div>
     </div>
     <!-- 导航 end-->

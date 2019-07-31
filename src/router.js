@@ -47,6 +47,14 @@ export default new Router({
         "el-router-view":() => import("./el_views/ElementInput.vue"),
         "im-router-view":() => import("./views/ImitateInput.vue")
       }
+    },
+    {
+      path:"/select",
+      name:"select",
+      components:{
+        "el-router-view":() => import("./el_views/ElementSelect.vue"),
+        "im-router-view":() => import("./views/ImitateSelect.vue")
+      }
     }
   ]
 })
