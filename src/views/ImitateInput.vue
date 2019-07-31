@@ -19,13 +19,13 @@
         <im-input v-model="im_input5" type="textarea" disabled placeholder="请输入内容"></im-input>
 
         <div class="title">文本域-自适应高度</div>
-        <im-input v-model="im_input5" type="textarea" autosize placeholder="请输入内容"></im-input>
+        <im-input v-model="im_input5" type="textarea" :resize="'none'" :autosize="{minRows:3,maxRows:5}" placeholder="请输入内容"></im-input>
 
     </div>
 </template>
 
 <script>
-import ImInput from "../components/ImInput.vue"
+import ImInput from "../components/ImInput/ImInput.vue"
     export default {
         name:"ImitateInput",
         components:{

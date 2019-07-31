@@ -14,7 +14,9 @@
             <i class="im-icon-clear" @click="clear" v-show="value!=''&&clearable"></i>
             <i class="im-icon-pass" :class="{'hide':passVisible}" @click="passVisible=!passVisible" v-if="this.showPassword&&value!=''"></i>
         </template>
-        <textarea v-else 
+        <textarea v-else
+        ref="textarea" 
+        :style="textareaStyle"
         v-bind="$attrs"
         @compositionstart="handleCompositionStart"
         @compositionend="handleCompositionEnd"
@@ -25,6 +27,8 @@
 </template>
 
 <script>
+import textareaHeight from "./textareaHeight"
+import merge from '@/utils/merge'
     export default {
         name:"ImInput",
         inheritAttrs:false,
@@ -46,31 +50,38 @@
                 type:String,
                 default:'text'
             },
+            // Object,接受最大行数和最小行数
             autosize:{
-                type:Boolean,
+                type:[Boolean,Object],
                 default:false
+            },
+            resize:{
+                type:String,
+                default:'auto'
             }
         },
         data(){
             return {
                 isComposing:false,
                 isFocus:false,
-                passVisible:false //true显示密码，false不显示明文密码
+                passVisible:false, //true显示密码，false不显示明文密码
+                textareaStyle:null
             }
         },
+        mounted(){
+            this.textareaAutoHeight();
+        },
         methods:{
-            handleCompositionStart(evt){
+            handleCompositionStart(){
                 this.isComposing = true;
-                if(this.autosize){
-                    let w = evt.target.clientWidth;
-                    
-                }
             },
             handleCompositionEnd(evt){
                 this.isComposing = false;
                 this.handleInput(evt);
             },
             handleInput(evt){
+                // 是文本域，且要求高度自适应
+                this.textareaAutoHeight();
                 if(this.isComposing) return;
                 this.$emit('input',evt.target.value);
             },
@@ -86,6 +97,20 @@
             clear(){
                 this.$emit('input',"");
             },
+            /**
+             * 文本域高度自适应
+             */
+            textareaAutoHeight(){
+                if(this.type==='textarea'&&this.autosize){
+                    let minRows = this.autosize.minRows;
+                    let maxRows = this.autosize.maxRows;
+                    this.textareaStyle = merge(
+                        {},
+                        textareaHeight(this.$refs.textarea,minRows,maxRows),
+                        {resize:this.resize}
+                    );
+                }
+            }
         },
     }
 </script>
@@ -108,7 +133,7 @@ input::-webkit-input-placeholder{
         }
     }
     textarea{
-        padding:10px;
+        padding:7px 10px;line-height:1.5;
     }
     input{
         padding:5px 10px;height:38px;

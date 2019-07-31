@@ -16,10 +16,10 @@
         <el-input v-model="el_input5" type="textarea" placeholder="'请输入内容'"></el-input>
 
         <div class="title">文本域-禁用</div>
-        <el-input v-model="el_input5" type="textarea" disabled placeholder="'请输入内容'"></el-input>
+        <el-input v-model="el_input6" type="textarea" disabled placeholder="'请输入内容'"></el-input>
 
         <div class="title">文本域-自适应高度</div>
-        <el-input v-model="el_input6" type="textarea" autosize placeholder="'请输入内容'"></el-input>
+        <el-input class="test" v-model="el_input7" :resize="'none'" type="textarea" :autosize="{minRows:2,maxRows:5}" placeholder="'请输入内容'"></el-input>
 
     </div>
 </template>
@@ -34,7 +34,8 @@
                 el_input3:"",
                 el_input4:"",
                 el_input5:"",
-                el_input6:""
+                el_input6:"",
+                el_input7:""
             }
         }
     }
