@@ -131,3 +131,47 @@
   display: inline-block;
   background-color: #bbb;
 }
+
+.im-scrollbar {
+  border: 1px solid #eee;
+  position: relative;
+  overflow: hidden;
+}
+
+.im-scrollbar-wrap {
+  max-height: 200px;
+  overflow: auto;
+  margin-right: -17px;
+  margin-bottom: -17px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.im-scrollbar-bar {
+  position: absolute;
+  background-color: #eee;
+  border-radius: 3px;
+}
+
+.im-scrollbar-bar.im-bar-v {
+  right: 0;
+  top: 2px;
+  width: 6px;
+  bottom: 2px;
+}
+
+.im-scrollbar-bar.im-bar-v .im-scrollbar-thumb {
+  height: 10%;
+}
+
+.im-scrollbar-bar.im-bar-h {
+  bottom: 0;
+  left: 2px;
+  right: 2px;
+  height: 6px;
+}
+
+.im-scrollbar-bar .im-scrollbar-thumb {
+  border-radius: inherit;
+  background-color: #aaa;
+}

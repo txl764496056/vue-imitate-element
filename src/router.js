@@ -55,6 +55,14 @@ export default new Router({
         "el-router-view":() => import("./el_views/ElementSelect.vue"),
         "im-router-view":() => import("./views/ImitateSelect.vue")
       }
+    },
+    {
+      path:"/scrollbar",
+      name:"scrollbar",
+      components:{
+        "el-router-view":() => import("./el_views/ElementScrollbar.vue"),
+        "im-router-view":() => import("./views/ImitateScrollbar.vue")
+      }
     }
   ]
 })

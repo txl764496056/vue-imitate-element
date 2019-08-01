@@ -64,7 +64,7 @@ export default function textareaHeight(targetElement, minRows = 1 ,maxRows = nul
     hiddenTextarea.setAttribute('style',`${contextStyle};${HIDEN_STYLE}`);
     hiddenTextarea.value = targetElement.value || targetElement.placeholder || "";
 
-    let height = hiddenTextarea.scrollHeight; //scrollHeight=padding-top+padding-bottom+content(内容高)
+    let height = hiddenTextarea.scrollHeight; 
     const result = {};
 
     // 算出实际设置的高度;

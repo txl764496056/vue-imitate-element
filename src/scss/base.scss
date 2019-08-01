@@ -80,3 +80,32 @@ $color-bb:#bbb;
         content:"";width:$size/4;height:$size/4;border-radius:50%;display:inline-block;background-color:$color-bb;
     }
 }
+
+// 滚动容器
+$bar-size:6px;
+.im-scrollbar{
+    border:1px solid $color-ee;position:relative;
+    overflow:hidden;
+}
+.im-scrollbar-wrap{
+    max-height:200px;overflow: auto;
+    margin-right:-17px;margin-bottom:-17px;
+    padding-right:$bar-size+4px;padding-bottom:$bar-size+4px;
+}
+
+.im-scrollbar-bar{
+    $bar-distance:2px;
+    position:absolute;background-color:#eee;border-radius:$bar-size/2;
+    &.im-bar-v{
+        right:0;top:$bar-distance;width:$bar-size;bottom:$bar-distance;
+        .im-scrollbar-thumb{
+            height:10%;
+        }
+    }
+    &.im-bar-h{
+        bottom:0;left:$bar-distance;right:$bar-distance;height:$bar-size;
+    }
+    .im-scrollbar-thumb{
+        border-radius:inherit;background-color:#aaa;
+    }
+}
