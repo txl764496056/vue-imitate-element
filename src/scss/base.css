@@ -139,25 +139,26 @@
 }
 
 .im-scrollbar-wrap {
-  max-height: 200px;
+  max-height: 270px;
+  height: 100%;
   overflow: auto;
   margin-right: -17px;
   margin-bottom: -17px;
   padding-right: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .im-scrollbar-bar {
   position: absolute;
-  background-color: #eee;
+  background-color: rgba(125, 125, 125, 0.1);
   border-radius: 3px;
 }
 
 .im-scrollbar-bar.im-bar-v {
   right: 0;
-  top: 2px;
   width: 6px;
-  bottom: 2px;
+  top: 2px;
+  bottom: 6px;
 }
 
 .im-scrollbar-bar.im-bar-v .im-scrollbar-thumb {
@@ -166,12 +167,16 @@
 
 .im-scrollbar-bar.im-bar-h {
   bottom: 0;
-  left: 2px;
-  right: 2px;
   height: 6px;
+  left: 2px;
+  right: 6px;
+}
+
+.im-scrollbar-bar.im-bar-h .im-scrollbar-thumb {
+  height: 100%;
 }
 
 .im-scrollbar-bar .im-scrollbar-thumb {
   border-radius: inherit;
-  background-color: #aaa;
+  background-color: rgba(125, 125, 125, 0.35);
 }

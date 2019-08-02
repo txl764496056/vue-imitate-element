@@ -88,24 +88,33 @@ $bar-size:6px;
     overflow:hidden;
 }
 .im-scrollbar-wrap{
-    max-height:200px;overflow: auto;
+    max-height:270px;
+    height:100%;
+    overflow: auto;
     margin-right:-17px;margin-bottom:-17px;
-    padding-right:$bar-size+4px;padding-bottom:$bar-size+4px;
+    padding-right:$bar-size+4px;padding-bottom:$bar-size+14px;
 }
 
 .im-scrollbar-bar{
     $bar-distance:2px;
-    position:absolute;background-color:#eee;border-radius:$bar-size/2;
+    position:absolute;background-color:middle-gray(0.1);border-radius:$bar-size/2;
     &.im-bar-v{
-        right:0;top:$bar-distance;width:$bar-size;bottom:$bar-distance;
+        right:0;width:$bar-size;
+        top:$bar-distance;
+        bottom:$bar-size;
         .im-scrollbar-thumb{
             height:10%;
         }
     }
     &.im-bar-h{
-        bottom:0;left:$bar-distance;right:$bar-distance;height:$bar-size;
+        bottom:0;height:$bar-size;
+        left:$bar-distance;
+        right:$bar-size;
+        .im-scrollbar-thumb{
+            height:100%;
+        }
     }
     .im-scrollbar-thumb{
-        border-radius:inherit;background-color:#aaa;
+        border-radius:inherit;background-color:middle-gray(0.35);
     }
 }

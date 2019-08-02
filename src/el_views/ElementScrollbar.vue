@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="title">自定义滚动条</div>
+        <div class="title" @click='add'>自定义滚动条</div>
          <el-scrollbar 
           tag="ul"
           wrap-class="el-select-dropdown__wrap"
@@ -51,8 +51,17 @@
                     value: '选项10',
                     label: '北京烤鸭2'
                 }],
+                num:11
             }
         },
+        methods:{
+            add(){
+                this.options.push({
+                    value:"ddfdf"+this.num,
+                    label:"方今典开发"+(this.num++)
+                })
+            }
+        }
     }
 </script>
 

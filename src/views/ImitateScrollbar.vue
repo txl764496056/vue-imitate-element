@@ -1,7 +1,10 @@
 <template>
     <div>
-        <div class="title">自定义滚动条</div>
-        <im-scrollbar class="im-scrollbar-container">
+        <div class="title" @click='add'>自定义滚动条</div>
+        <im-scrollbar 
+            class="im-scrollbar-container"
+            wrap-class="wrap-class"
+            view-class="view-class">
             <li 
             v-for="item in im_options"
             :key="item.label">{{item.label}}</li>
@@ -49,8 +52,19 @@ import ImScrollbar from '@/components/ImScrollbar'
                     value: '选项10',
                     label: '北京烤鸭2'
                 }],
-                im_select1: ''
+                im_select1: '',
+                num:13,
+                w:400
             }
+        },
+        methods:{
+            add(){
+                this.w = 600;
+                this.im_options.push({
+                    value:"djfkdjfkd"+this.num,
+                    label:"dddooo"+(this.num++)
+                })
+            },
         }
     }
 </script>
@@ -58,7 +72,7 @@ import ImScrollbar from '@/components/ImScrollbar'
 <style lang="scss" scoped>
 .im-scrollbar-container{
     li{
-        line-height:30px;list-style: none;font-size:14px;word-break:break-all;
+        line-height:30px;list-style: none;font-size:14px;word-break:break-all;width:600px;
     }
 }
 </style>
