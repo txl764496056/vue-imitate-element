@@ -11,6 +11,9 @@ export default {
             type:String,
             default:''
         },
+        /**
+         * 鼠标滑入滑出、显示隐藏效果
+         */
         hoverShowBar:{
             type:Boolean,
             default:true
@@ -24,7 +27,8 @@ export default {
             barH:"",
             barW:"",
             viewStyle:"",
-            barIsShow:true
+            barMousedown:false, //滚动条在移动
+            barIsShow: this.hoverShowBar ? false:true
         }
     },
     computed:{
@@ -41,10 +45,7 @@ export default {
         const wrap = (
             <div class={[this.wrapClass,"im-scrollbar-wrap"] }
                 ref="wrap"
-                onScroll={ this.handleScroll }
-                onmouseenter={ this.hoverShowBar ? this.handleMouseenter:'' }
-                onmouseleave={ this.hoverShowBar ? this.handleMouseleave:'' }
-                >
+                onScroll={ this.handleScroll }>
                 {[view]}
             </div>
         )
@@ -60,17 +61,43 @@ export default {
         let nodes = ([
             wrap,
             <Bar 
+             onchangeIsShow={ this.changeIsShow }
              show={ this.barIsShow }
              move={ this.moveX }
              size={ this.barW }></Bar>,
             <Bar 
-            vertical
+             vertical
+             onchangeIsShow={ this.changeIsShow }
+             show={ this.barIsShow }
              move={ this.moveY }
              size={ this.barH }></Bar>
         ])
-        return h('div',{class:'im-scrollbar'},nodes);
+        return h('div',{
+            class:'im-scrollbar',
+            on:{
+                /**
+                 * 鼠标移入
+                 */
+                mouseenter:()=>{
+                    if(this.hoverShowBar){
+                        this.barIsShow = true;
+                    }
+                },
+                /**
+                 * 鼠标移出,滚动条 按下/拖动时，不隐藏
+                 */
+                mouseleave:()=>{
+                    if(this.hoverShowBar&&!this.barMousedown){
+                        this.barIsShow = false;
+                    }
+                }
+            }
+        },nodes);
     },
     methods:{
+        changeIsShow(data){
+            this.barMousedown = data;
+        },
         handleScroll(){
             const wrap = this.wrap;
             
@@ -97,22 +124,6 @@ export default {
                 this.update();
             });
             observer.observe(this.$refs.resize);
-        },
-        /**
-         * 鼠标移入
-         */
-        handleMouseenter(){
-            if(this.barIsShow) return;
-            this.barIsShow = true;
-            console.log('enter');
-        },
-        /**
-         * 鼠标移出
-         */
-        handleMouseleave(){
-            if(!this.barIsShow) return;
-            this.barIsShow = false;
-            console.log('leave');
         }
     },
     mounted(){

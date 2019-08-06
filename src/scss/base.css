@@ -1,5 +1,10 @@
+.mt20 {
+  margin-top: 20px;
+}
+
 .compare-box {
   display: flex;
+  height: 100%;
 }
 
 .compare-box .im-content, .compare-box .el-content {
@@ -179,4 +184,14 @@
 .im-scrollbar-bar .im-scrollbar-thumb {
   border-radius: inherit;
   background-color: rgba(125, 125, 125, 0.35);
+}
+
+.im-theme-btn {
+  border: 1px solid #409eff;
+  padding: 7px 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #409eff;
+  font-size: 14px;
+  letter-spacing: 1px;
 }

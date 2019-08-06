@@ -4,11 +4,21 @@ export const BAR_MAP = {
         axis:'Y',
         size:"height",
         key:"v",
+        client:'clientY',
+        offset:'offsetHeight',
+        direction:'top',
+        scroll:'scrollTop',
+        scrollSize:'scrollHeight'
     },
     h:{
         axis:"X",
         size:"width",
-        key:"h"
+        key:"h",
+        client:'clientX',
+        offset:'offsetWidth',
+        direction:'left',
+        scroll:'scrollLeft',
+        scrollSize:'scrollWidth'
     }
 }
 

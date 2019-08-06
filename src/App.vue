@@ -115,6 +115,9 @@ export default {
       }
     }
   }
+  .el-content,.im-content{
+    padding-bottom:20px;
+  }
 }
 .menu{
   position:absolute;top:10px;right:10px;

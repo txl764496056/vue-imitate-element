@@ -1,6 +1,17 @@
 <template>
     <div>
-        <div class="title" @click='add'>自定义滚动条</div>
+        <button class="im-theme-btn mt20" @click='add'>点击-增加滚动内容</button>
+        <div class="title">自定义滚动条</div>
+        <im-scrollbar 
+            class="im-scrollbar-container"
+            wrap-class="wrap-class"
+            view-class="view-class"
+            :hoverShowBar="false">
+            <li 
+            v-for="item in im_options"
+            :key="item.label">{{item.label}}</li>
+        </im-scrollbar>
+        <div class="title">自定义滚动条-悬停显示滚动条</div>
         <im-scrollbar 
             class="im-scrollbar-container"
             wrap-class="wrap-class"
@@ -74,5 +85,9 @@ import ImScrollbar from '@/components/ImScrollbar'
     li{
         line-height:30px;list-style: none;font-size:14px;word-break:break-all;width:600px;
     }
+}
+
+/deep/.view-class{
+    padding:5px;
 }
 </style>

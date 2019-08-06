@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="title" @click='add'>自定义滚动条</div>
+        <button class="im-theme-btn mt20" @click='add'>点击-增加滚动内容</button>
+        <div class="title">自定义滚动条</div>
          <el-scrollbar 
           tag="ul"
           wrap-class="el-select-dropdown__wrap"
