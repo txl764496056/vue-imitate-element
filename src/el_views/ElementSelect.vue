@@ -31,6 +31,21 @@
                     }, {
                     value: '选项5',
                     label: '北京烤鸭'
+                },{
+                    value: '选项6',
+                    label: '黄金糕6'
+                    }, {
+                    value: '选项7',
+                    label: '双皮奶7'
+                    }, {
+                    value: '选项8',
+                    label: '蚵仔煎8'
+                    }, {
+                    value: '选项9',
+                    label: '龙须面9'
+                    }, {
+                    value: '选项10',
+                    label: '北京烤鸭10'
                 }],
                 el_select1: ''
             }

@@ -47,7 +47,7 @@ export default {
         const {size,move,bar,show} = this;
         return (
             <div class={['im-scrollbar-bar','im-bar-'+bar.key]}
-                style={ {opacity:( show ? 1:0)} }
+                style={ {opacity:( show&&size!='' ? 1:0)} }
                 onmousedown={ this.clickTrackHandler }
                 >
                 <div 
@@ -86,7 +86,6 @@ export default {
             let thumbHalf = (this.$refs.thumb[this.bar.offset]/2);
 
             let percent = (offset-thumbHalf)/this.$el[this.bar.offset];
-            // if(percent<0||percent>1){return;}
 
             this.wrap[this.bar.scroll] = percent*this.wrap[this.bar.scrollSize];
         },

@@ -3,7 +3,7 @@
         <button class="im-theme-btn mt20" @click='add'>点击-增加滚动内容</button>
         <div class="title">自定义滚动条</div>
         <im-scrollbar 
-            class="im-scrollbar-container"
+            class="im-scrollbar-container w600"
             wrap-class="wrap-class"
             view-class="view-class"
             :hoverShowBar="false">
@@ -13,12 +13,22 @@
         </im-scrollbar>
         <div class="title">自定义滚动条-悬停显示滚动条</div>
         <im-scrollbar 
-            class="im-scrollbar-container"
+            class="im-scrollbar-container w600"
             wrap-class="wrap-class"
             view-class="view-class">
             <li 
             v-for="item in im_options"
             :key="item.label">{{item.label}}</li>
+        </im-scrollbar>
+        <div class="title">自定义滚动条-只有垂直滚动条</div>
+        <im-scrollbar 
+            class="im-scrollbar-container"
+            wrap-class="wrap-class"
+            view-class="view-class">
+            <template
+            v-for="item in im_options">
+                <li :key="item.label" v-if="item.index!=7">{{item.label}}</li>
+            </template>
         </im-scrollbar>
     </div>
 </template>
@@ -52,6 +62,7 @@ import ImScrollbar from '@/components/ImScrollbar'
                     label: '黄金糕2'
                     }, {
                     value: '选项7',
+                    index:7,
                     label: '双皮奶ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd2'
                     }, {
                     value: '选项8',
@@ -83,7 +94,12 @@ import ImScrollbar from '@/components/ImScrollbar'
 <style lang="scss" scoped>
 .im-scrollbar-container{
     li{
-        line-height:30px;list-style: none;font-size:14px;word-break:break-all;width:600px;
+        line-height:30px;list-style: none;font-size:14px;word-break:break-all;
+    }
+    &.w600{
+        li{
+            width:600px;
+        }
     }
 }
 
