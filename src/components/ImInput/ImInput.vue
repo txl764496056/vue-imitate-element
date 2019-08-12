@@ -88,8 +88,9 @@ import merge from '@/utils/merge'
             handleFocus(){
                 this.isFocus = true;
             },
-            handleBlur(){
+            handleBlur(evt){
                 this.isFocus = false;
+                this.$emit('blur',evt);
             },
             /**
              * 清空输入

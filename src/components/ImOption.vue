@@ -62,5 +62,8 @@
     &:hover{
         background-color:theme-color(0.1);
     }
+    &:disabled{
+        color:$color-bb;cursor:not-allowed;
+    }
 }
 </style>

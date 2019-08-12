@@ -2,6 +2,7 @@ import Bar from "./im-bar"
 import ResizeObserver from 'resize-observer-polyfill'
 export default {
     name:"ImScrollbar",
+    componentName:'ImScrollbar',
     props:{
         wrapClass:{
             type:String,
