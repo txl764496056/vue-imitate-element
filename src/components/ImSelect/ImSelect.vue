@@ -5,8 +5,8 @@
         v-model='selectedLabel'
         placeholder="请选择"
         :readonly="true"
-        ref="imSelectInput"
         :disabled="disabled"
+        v-bind="$attrs"
         @blur="handBlur"></im-input>
         <i class="arrow"></i>
         <div class="option-list"
@@ -29,8 +29,8 @@ import ImScrollbar from '@/components/ImScrollbar'
 import ImInput from '@/components/ImInput/ImInput.vue'
 import { setTimeout } from 'timers';
     export default {
-
         name:"ImSelect",
+        inheritAttrs:false,
         componentName:"ImSelect",
         components:{
             ImInput,
