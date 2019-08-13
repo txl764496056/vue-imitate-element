@@ -130,7 +130,7 @@ input::-webkit-input-placeholder{
             outline:none;
         }
         &:disabled{
-            background-color:middle-gray(0.05);border-color:$color-ee;
+            background-color:middle-gray(0.05);border-color:$color-ee;cursor:not-allowed;
         }
     }
     textarea{
