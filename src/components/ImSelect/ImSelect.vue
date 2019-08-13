@@ -6,6 +6,7 @@
         placeholder="请选择"
         :readonly="true"
         ref="imSelectInput"
+        :disabled="disabled"
         @blur="handBlur"></im-input>
         <i class="arrow"></i>
         <div class="option-list"
@@ -43,6 +44,10 @@ import { setTimeout } from 'timers';
             value:{
                 type:[String,Number],
                 default:''
+            },
+            disabled:{
+                type:Boolean,
+                default:false
             }
         },
         data(){

@@ -10,7 +10,9 @@
             :disabled="item.disabled"></im-option>
         </im-select>
         <div class="title">基本用法-禁用</div>
-        <im-select class="select" v-model='im_select2'>
+        <im-select class="select" 
+        v-model='im_select2'
+        :disabled='true'>
             <im-option
             v-for="item in options"
             :key="item.label"
