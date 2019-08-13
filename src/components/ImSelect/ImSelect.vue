@@ -1,6 +1,6 @@
 <template>
     <div class="im-select"
-    @click.capture="handleClick">
+    @click.capture=" disabled ? '':handleClick()">
         <im-input
         v-model='selectedLabel'
         placeholder="请选择"
@@ -8,7 +8,7 @@
         :disabled="disabled"
         v-bind="$attrs"
         @blur="handBlur"></im-input>
-        <i class="arrow"></i>
+        <i class="arrow" v-if="!disabled" :class='{"arrow-up":isShowOptions}'></i>
         <div class="option-list"
          v-if="isShowOptions">
             <im-scrollbar class="select-scroll">
@@ -48,6 +48,10 @@ import { setTimeout } from 'timers';
             disabled:{
                 type:Boolean,
                 default:false
+            },
+            clearable:{
+                type:Boolean,
+                default:false
             }
         },
         data(){
@@ -83,14 +87,25 @@ import { setTimeout } from 'timers';
 .im-select{
     display:inline-block;position:relative;background-color:#fff;
     .arrow{
-        $size:8px;
+        $size:10px;
         height:$size;width:$size;
         position:absolute;right:5px;top:14px;
-        // margin-top:-($size * 1.4142) /2;
-        transform:rotate(45deg);
-        border: 1px solid $color-bb {
-            left:none;
-            top:none;
+        transition:transform 0.5s;
+        &::before,&::after{
+            content:"";display:inline-block;height:1px;background-color:$color-bb; width:$size/1.4;position:absolute;top:25%;         
+        }
+        &::before{
+            left:0;
+            transform:rotate(45deg);
+            transform-origin:left top;
+        }
+        &::after{
+            right:0;
+            transform:rotate(-45deg);
+            transform-origin:right top;
+        }
+        &.arrow-up{
+            transform:rotate(-180deg) 
         }
     }
     .option-list{
