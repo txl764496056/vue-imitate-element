@@ -9,6 +9,7 @@
             :label="item.label"
             :disabled="item.disabled"></el-option>
         </el-select>
+
         <div class="title">基本用法-禁用</div>
         <el-select v-model="el_select2" placeholder="请选择">
             <el-option 
@@ -18,6 +19,20 @@
             :label="item.label"
             :disabled="item.disabled"></el-option>
         </el-select>
+
+        <div class="title">基本用法-清除</div>
+        <el-select 
+        v-model="el_select3"
+         placeholder="请选择"
+         clearable>
+            <el-option 
+            v-for="item in options"
+            :key="item.label"
+            :value="item.value"
+            :label="item.label"
+            :disabled="item.disabled"></el-option>
+        </el-select>
+
     </div>
 </template>
 
@@ -60,7 +75,8 @@
                     label: '北京烤鸭10'
                 }],
                 el_select1: '',
-                el_select2:''
+                el_select2:'',
+                el_select3:''
             }
         }
     }

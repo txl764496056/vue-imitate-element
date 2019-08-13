@@ -1,14 +1,18 @@
 <template>
     <div class="im-select"
-    @click.capture=" disabled ? '':handleClick()">
+     @mouseenter="imInputmouseEnter"
+        @mouseleave="imInputMouseLeave"
+    >
         <im-input
         v-model='selectedLabel'
         placeholder="请选择"
         :readonly="true"
         :disabled="disabled"
+        :clearable="clearable&&mouseEnter"
         v-bind="$attrs"
+        @click.native=" disabled ? '':handleClick()"
         @blur="handBlur"></im-input>
-        <i class="arrow transition" v-if="!disabled" :class='{"arrow-up":isShowOptions}'></i>
+        <i class="arrow transition" v-if="!disabled&&(clearable ? (!mouseEnter):true)" :class='{"arrow-up":isShowOptions}'></i>
         <div class="option-list"
          v-if="isShowOptions">
             <im-scrollbar class="select-scroll">
@@ -57,7 +61,8 @@ import { setTimeout } from 'timers';
         data(){
             return {
                 selectedLabel:"",
-                isShowOptions:false
+                isShowOptions:false,
+                mouseEnter:false
             }
         },
         created(){
@@ -77,6 +82,12 @@ import { setTimeout } from 'timers';
                     _this.isShowOptions = false;
                 },150)
             },
+            imInputmouseEnter(){
+                this.mouseEnter = true;
+            },
+            imInputMouseLeave(){
+                this.mouseEnter = false;
+            }
         },
         
     }
@@ -86,7 +97,13 @@ import { setTimeout } from 'timers';
 @import '@/scss/base.scss';
 .im-select{
     display:inline-block;position:relative;background-color:#fff;
-    
+    &.show{
+        &:hover{
+            .arrow{
+                display:none;
+            }
+        }
+    }
     .option-list{
         $size:8px;
         position:absolute;top:100%;left:0;right:0;margin-top:$size;z-index:99;background-color:#fff;

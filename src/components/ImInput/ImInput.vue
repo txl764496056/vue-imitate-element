@@ -11,7 +11,7 @@
             @focus="handleFocus"
             @blur="handleBlur"
             />
-            <i class="im-icon-clear" @click="clear" v-show="value!=''&&clearable"></i>
+            <i class="im-icon-clear" @click.stop="clear" v-show="value!=''&&clearable"></i>
             <i class="im-icon-pass" :class="{'hide':passVisible}" @click="passVisible=!passVisible" v-if="this.showPassword&&value!=''"></i>
         </template>
         <textarea v-else
