@@ -140,12 +140,12 @@ $bar-size:6px;
     &::before{
         left:0;
         transform:rotate(45deg);
-        transform-origin:left top;
+        transform-origin:left center;
     }
     &::after{
         right:0;
         transform:rotate(-45deg);
-        transform-origin:right top;
+        transform-origin:right center;
     }
     &.arrow-up{
         transform:rotate(-180deg) 
