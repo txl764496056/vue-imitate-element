@@ -6,38 +6,34 @@
         placeholder="请选择"
         :readonly="true"
         ref="imSelectInput"
-        @blur="handBlur"
-        @focus="handFocus"></im-input>
+        @blur="handBlur"></im-input>
         <i class="arrow"></i>
-        <!-- <div class="option-list"
+        <div class="option-list"
          v-if="isShowOptions">
             <im-scrollbar class="select-scroll">
                 <slot></slot>
             </im-scrollbar>
-        </div> -->
-        <im-select-menu
+        </div>
+        <!-- <im-select-menu
         v-if="isShowOptions">
              <im-scrollbar class="select-scroll">
                 <slot></slot>
             </im-scrollbar>
-        </im-select-menu>
+        </im-select-menu> -->
     </div>
 </template>
 
 <script>
 import ImScrollbar from '@/components/ImScrollbar'
 import ImInput from '@/components/ImInput/ImInput.vue'
-import Emitter from '@/utils/emitter.js'
-import imSelectMenu from './ImSelectMenu.vue'
+import { setTimeout } from 'timers';
     export default {
-        mixins:[Emitter],
 
         name:"ImSelect",
         componentName:"ImSelect",
         components:{
             ImInput,
             ImScrollbar,
-            imSelectMenu
         },
         model:{
             prop:['value'],
@@ -61,22 +57,17 @@ import imSelectMenu from './ImSelectMenu.vue'
                 this.$emit('change',option.value);
                 this.isShowOptions = false;
             });
-            
         },
         methods:{
             handleClick(){
                 this.isShowOptions = !this.isShowOptions;
             },
-            documentClick(){
-                if(this.isShowOptions) 
-                this.isShowOptions = false;
-            },
             handBlur(){
-                document.addEventListener('click',this.documentClick,true);
+                let _this = this;
+                setTimeout(function(){
+                    _this.isShowOptions = false;
+                },150)
             },
-            handFocus(){
-                document.removeEventListener('click',this.documentClick);
-            }
         },
         
     }

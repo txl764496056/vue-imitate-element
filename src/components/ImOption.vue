@@ -2,7 +2,7 @@
     <option class="im-option"
     :value='value'
     :disabled="disabled"
-    @click='handleClick'>{{label}}</option>
+    @click.stop='handleClick'>{{label}}</option>
 </template>
 
 <script>
