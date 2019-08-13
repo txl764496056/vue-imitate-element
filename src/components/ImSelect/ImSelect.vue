@@ -8,7 +8,7 @@
         :disabled="disabled"
         v-bind="$attrs"
         @blur="handBlur"></im-input>
-        <i class="arrow" v-if="!disabled" :class='{"arrow-up":isShowOptions}'></i>
+        <i class="arrow transition" v-if="!disabled" :class='{"arrow-up":isShowOptions}'></i>
         <div class="option-list"
          v-if="isShowOptions">
             <im-scrollbar class="select-scroll">
@@ -86,28 +86,7 @@ import { setTimeout } from 'timers';
 @import '@/scss/base.scss';
 .im-select{
     display:inline-block;position:relative;background-color:#fff;
-    .arrow{
-        $size:10px;
-        height:$size;width:$size;
-        position:absolute;right:5px;top:14px;
-        transition:transform 0.5s;
-        &::before,&::after{
-            content:"";display:inline-block;height:1px;background-color:$color-bb; width:$size/1.4;position:absolute;top:25%;         
-        }
-        &::before{
-            left:0;
-            transform:rotate(45deg);
-            transform-origin:left top;
-        }
-        &::after{
-            right:0;
-            transform:rotate(-45deg);
-            transform-origin:right top;
-        }
-        &.arrow-up{
-            transform:rotate(-180deg) 
-        }
-    }
+    
     .option-list{
         $size:8px;
         position:absolute;top:100%;left:0;right:0;margin-top:$size;z-index:99;background-color:#fff;

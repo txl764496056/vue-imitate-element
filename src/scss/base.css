@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .mt20 {
   margin-top: 20px;
 }
@@ -194,4 +195,43 @@
   color: #409eff;
   font-size: 14px;
   letter-spacing: 1px;
+}
+
+/* 箭头 */
+.arrow {
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  right: 5px;
+  top: 14px;
+}
+
+.arrow::before, .arrow::after {
+  content: "";
+  display: inline-block;
+  height: 1px;
+  background-color: #bbb;
+  width: 7.14286px;
+  position: absolute;
+  top: 25%;
+}
+
+.arrow::before {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: left top;
+}
+
+.arrow::after {
+  right: 0;
+  transform: rotate(-45deg);
+  transform-origin: right top;
+}
+
+.arrow.arrow-up {
+  transform: rotate(-180deg);
+}
+
+.arrow.transition {
+  transition: transform 0.5s;
 }

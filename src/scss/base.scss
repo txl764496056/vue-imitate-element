@@ -127,3 +127,30 @@ $bar-size:6px;
 .im-theme-btn{
     border:1px solid $theme-color;padding:7px 10px;border-radius:5px;background-color:transparent;color:$theme-color;font-size:14px;letter-spacing:1px;
 }
+
+/* 箭头 */
+.arrow{
+    $size:10px;
+    height:$size;width:$size;
+    position:absolute;right:5px;top:14px;
+    
+    &::before,&::after{
+        content:"";display:inline-block;height:1px;background-color:$color-bb; width:$size/1.4;position:absolute;top:25%;         
+    }
+    &::before{
+        left:0;
+        transform:rotate(45deg);
+        transform-origin:left top;
+    }
+    &::after{
+        right:0;
+        transform:rotate(-45deg);
+        transform-origin:right top;
+    }
+    &.arrow-up{
+        transform:rotate(-180deg) 
+    }
+    &.transition{
+        transition:transform 0.5s;
+    }
+}
