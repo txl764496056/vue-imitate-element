@@ -11,8 +11,8 @@
             @focus="handleFocus"
             @blur="handleBlur"
             />
-            <i class="im-icon-clear" @click.stop="clear" v-show="value!=''&&clearable"></i>
-            <i class="im-icon-pass" :class="{'hide':passVisible}" @click="passVisible=!passVisible" v-if="this.showPassword&&value!=''"></i>
+            <i class="im-icon-clear" :class="{'r25':showPassword}" @click.stop="clear" v-show="value!=''&&clearable"></i>
+            <i class="im-icon-pass" :class="{'hide':passVisible}" @click.top="passVisible=!passVisible" v-if="this.showPassword&&value!=''"></i>
         </template>
         <textarea v-else
         ref="textarea" 
@@ -137,10 +137,15 @@ input::-webkit-input-placeholder{
         padding:7px 10px;line-height:1.5;
     }
     input{
-        padding:5px 10px;height:38px;
+        padding:5px 10px;
+        height:38px;
     }
     >i{
-        flex-shrink:0;margin-right:6px;
+        // margin-right:6px;
+        flex-shrink:0;position:absolute;right:5px;
+        &.r25{
+            right:25px;
+        }
     }
     &.focus{
         border-color:$theme-color;
