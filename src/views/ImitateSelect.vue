@@ -23,7 +23,7 @@
 
 <script>
 import ImSelect from '@/components/ImSelect/ImSelect.vue'
-import ImOption from  '@/components/ImOption.vue'
+import ImOption from  '@/components/ImSelect/ImOption.vue'
     export default {
         name:"ImitateSelect",
         components:{
