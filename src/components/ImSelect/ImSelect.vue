@@ -1,7 +1,5 @@
 <template>
-    <div class="im-select"
-     @mouseenter="imInputmouseEnter"
-     @mouseleave="imInputMouseLeave">
+    <div class="im-select">
      <!-- 设置了清除 且 鼠标移入 -->
         <im-input
         v-model='selectedLabel'
@@ -11,7 +9,9 @@
         :clearable="clearable&&mouseEnter"
         v-bind="$attrs"
         @click.native=" disabled ? '':handleClick()"
-        @blur="handBlur"></im-input>
+        @blur="handBlur"
+        @mouseenter="imInputmouseEnter"
+        @mouseleave="imInputMouseLeave"></im-input>
         <!-- 可用状态 且（是否有清除设置 ? （有清除且鼠标离开或者未选中选项）:true） -->
         <i class="arrow transition" v-if="!disabled&&(clearable ? (!mouseEnter||selectedLabel==''):true)" :class='{"arrow-up":isShowOptions}'></i>
         <div class="option-list"
