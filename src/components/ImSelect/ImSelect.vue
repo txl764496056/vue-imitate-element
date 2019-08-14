@@ -12,8 +12,8 @@
         v-bind="$attrs"
         @click.native=" disabled ? '':handleClick()"
         @blur="handBlur"></im-input>
-        <!-- 可用状态 且（是否有清除设置 ? （有清除且鼠标离开）:true） -->
-        <i class="arrow transition" v-if="!disabled&&(clearable ? (!mouseEnter):true)" :class='{"arrow-up":isShowOptions}'></i>
+        <!-- 可用状态 且（是否有清除设置 ? （有清除且鼠标离开或者未选中选项）:true） -->
+        <i class="arrow transition" v-if="!disabled&&(clearable ? (!mouseEnter||selectedLabel==''):true)" :class='{"arrow-up":isShowOptions}'></i>
         <div class="option-list"
          v-if="isShowOptions">
             <im-scrollbar class="select-scroll">
