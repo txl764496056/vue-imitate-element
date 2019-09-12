@@ -235,3 +235,26 @@
 .arrow.transition {
   transition: transform 0.5s;
 }
+
+.im-arrow {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border: 6px solid transparent;
+}
+
+.im-arrow.im-arrow-d {
+  border-top-color: #ccc;
+}
+
+.im-arrow.im-arrow-r {
+  border-left-color: #ccc;
+}
+
+.im-arrow.im-arrow-l {
+  border-right-color: #ccc;
+}
+
+.im-arrow.im-arrow-t {
+  border-bottom-color: #ccc;
+}

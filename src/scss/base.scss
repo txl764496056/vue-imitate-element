@@ -154,3 +154,23 @@ $bar-size:6px;
         transition:transform 0.5s;
     }
 }
+
+.im-arrow{
+    width:0;
+    height:0;
+    display:inline-block;
+    border:6px solid transparent;
+    $color:#ccc;
+    &.im-arrow-d{
+        border-top-color:$color;
+    }
+    &.im-arrow-r{
+        border-left-color:$color;
+    }
+    &.im-arrow-l{
+        border-right-color:$color;
+    }
+    &.im-arrow-t{
+        border-bottom-color:$color;
+    }
+}

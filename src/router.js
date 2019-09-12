@@ -63,6 +63,14 @@ export default new Router({
         "el-router-view":() => import("./el_views/ElementScrollbar.vue"),
         "im-router-view":() => import("./views/ImitateScrollbar.vue")
       }
+    },
+    {
+      path:"/tree",
+      name:"tree",
+      components:{
+        "el-router-view":() => import("./el_views/ElementTree.vue"),
+        "im-router-view":() => import("./views/ImitateTree.vue")
+      }
     }
   ]
 })
