@@ -1,6 +1,6 @@
 <template>
     <div class="im-tree">
-        <im-tree-node v-for="child in data" :node="child" :key="child.label"></im-tree-node>
+        <im-tree-node v-for="child in data" :node="child" :isLeaf="!child.children" :key="child.label"></im-tree-node>
     </div>
 </template>
 
