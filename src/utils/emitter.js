@@ -16,7 +16,7 @@
           if( name === componentName ){
             child.$emit.apply(child,[eventName].concat(params));
           }else{
-            //   先讲componentName,eventName 放入一个数组中，再链接参数
+            //   先将componentName,eventName 放入一个数组中，再链接参数
               broadcast.apply(child,[componentName,eventName].concat([params]));
           }
           console.log(child);

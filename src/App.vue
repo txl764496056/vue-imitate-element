@@ -128,4 +128,20 @@ export default {
     }
 }
 
+/** transition 动画 ---start */
+
+.collapse-enter-active{
+    transition:height 1s;
+}
+
+// .collapse-enter{
+//     height:0;
+// }
+
+// .collapse-enter-to{
+//   height:300px;
+// }
+
+/** transition 动画 ---end */
+
 </style>

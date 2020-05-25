@@ -1,13 +1,12 @@
 <template>
     <div class="im-tree">
-        im-tree
-        <im-tree-node></im-tree-node>
+        <im-tree-node v-for="child in data" :node="child" :key="child.label"></im-tree-node>
     </div>
 </template>
 
 <script>
 import ImTreeNode from "./ImTreeNode.vue";
-import TreeStore from "./tree-store.js";
+// import TreeStore from "./tree-store.js";
     export default {
         name:"ImTree",
         props:{
@@ -21,16 +20,17 @@ import TreeStore from "./tree-store.js";
         components:{
             ImTreeNode
         },
-        data() {
-            return {
-                store:null,
-                root:null
-            }
-        },
+        // data() {
+        //     return {
+        //         store:null,
+        //         root:null
+        //     }
+        // },
         created(){
-            this.store = new TreeStore({
-                data:this.data
-            });
+            // this.store = new TreeStore({
+            //     data:this.data
+            // });
+            // this.root = this.store.root;
         }
     }
 </script>
