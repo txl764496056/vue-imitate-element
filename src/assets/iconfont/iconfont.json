@@ -1,0 +1,37 @@
+{
+  "id": "1587191",
+  "name": "普通收藏",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "544418",
+      "name": "arrow-up-b",
+      "font_class": "radiu-arrow-t",
+      "unicode": "e6e2",
+      "unicode_decimal": 59106
+    },
+    {
+      "icon_id": "13600263",
+      "name": "arrow-up-b",
+      "font_class": "radiu-arrow-r",
+      "unicode": "ebeb",
+      "unicode_decimal": 60395
+    },
+    {
+      "icon_id": "13600328",
+      "name": "arrow-up-b",
+      "font_class": "radiu-arrow-l",
+      "unicode": "ebec",
+      "unicode_decimal": 60396
+    },
+    {
+      "icon_id": "13600344",
+      "name": "arrow-up-b",
+      "font_class": "radiu-arrow-b",
+      "unicode": "ebed",
+      "unicode_decimal": 60397
+    }
+  ]
+}

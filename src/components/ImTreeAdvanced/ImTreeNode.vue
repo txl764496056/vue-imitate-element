@@ -1,12 +1,12 @@
 <template>
     <div class="im-tree-node">
         <div class="im-tree-node_label" @click="handleMenuList">
-            <span class="triangle iconfont icon-radiu-arrow-r" :class="{'down':iconDown}" v-if="!isLeaf"></span>
+            <span class="triangle iconfont icon-radiu-arrow-r" :class="{'down':iconDown}" v-if="!node.isLeaf"></span>
             <node-content :label="node.label"></node-content>
         </div>
         <im-collapse-transition :initStatus="expanded">
             <div class="im-tree-node_child" v-show="expanded">
-                <im-tree-node v-for="child in node.children" :isLeaf="!child.children" :node="child" :key="child.label"></im-tree-node>    
+                <im-tree-node v-for="child in node.childrenNodes" :node="child" :key="child.id"></im-tree-node>
             </div>
         </im-collapse-transition>
     </div>
@@ -37,10 +37,6 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
                 default(){
                     return {};
                 }
-            },
-            isLeaf:{
-                type:Boolean,
-                default:false
             }
         },
         data(){
@@ -60,7 +56,7 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
                 })
             },
             /**
-             * 箭头状态-方向
+             * 箭头状态处理-方向
              */
             handleIconStatus(){
                 this.iconDown = this.expanded;
@@ -92,5 +88,4 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
 .im-tree-node_child{
     margin-left:10px;
 }
-
 </style>

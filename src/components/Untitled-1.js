@@ -3,58 +3,51 @@
  * 2、beforeEnter、enter、afterEnter  是从0到300动画的钩子函数
  * 3、beforeLeave、leave、afterleave 是从300到0动画的钩子函数
  */
- class Transition {
+class Transition {
 
     // 进入动画之前（展开开始之前）
     beforeEnter(el){
-        
         el.style.height = "0px";
         el.style.overflow = "hidden";
-        
-        // console.log("before-enter")
+        console.log("before-enter",el)
     }
 
     // 动画执行过程中（展开过程中）
-    enter(el){
+    enter(el,done){
+        el.style.transition = "height 1s";
         setTimeout(function(){
-            el.style.transition = "height 0.3s ease-in-out";
-            el.style.height = el.scrollHeight+'px'; //获取当前列表的高度并设置
+            done(); //手动200ms后进入afterEnter,否则1s后才会进入并执行动画（即1s后开始动画）
         },100)
-        // console.log('enter');
+        console.log('enter');
     }
 
     // 完成动画之后（展开后）
     afterEnter(el){
-        el.style.transition = "";
+        
+        el.style.height="300px";
 
-        setTimeout(function(){
-            el.style.height = "";//取消高度设置，避免展开下一级时，不能全部显示
-        },300)
-        // console.log("after-enter");
+        console.log("after-enter");
     }
 
     // 恢复状态动画开始之前（（收起开始前）
     beforeLeave(el){
-        el.style.height = el.scrollHeight+'px'; //由于展开后高度设置被设为""，需要再次获取并设置才能使收起动画生效
-        el.style.overflow = "hidden";
-        el.style.transition = "height 0.3s ease-in-out";
-        // console.log("before-leave");
+        el.style.transition = "";
+        console.log("before-leave");
     }
 
     // 恢复状态动画中（收起过程中）
     leave(el){
-        
-        setTimeout(function(){
-            el.style.height="0px"; //避免与收起前的准备同时执行，动画为执行完，高度已经变为0；
-        },50)
-
-        // console.log("leave");
+        el.style.transition = "height 1s";
+        el.style.height="0px";
+        // setTimeout(function(){
+        //     done(); //手动200ms后进入afterLeave,否则1s后才会进入并执行动画（即1s后开始动画）
+        // },200)
+        console.log("leave");
     }
 
     // 恢复动画完成后（收起之后）
     afterLeave(el){
-        el.style.height = "";
-        el.style.transition = "";
+        // el.style.height="0px";
         // console.log("after-leave");
     }
 }

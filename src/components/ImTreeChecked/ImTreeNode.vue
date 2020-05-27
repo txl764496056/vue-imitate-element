@@ -1,22 +1,26 @@
 <template>
     <div class="im-tree-node">
         <div class="im-tree-node_label" @click="handleMenuList">
-            <span class="triangle iconfont icon-radiu-arrow-r" :class="{'down':iconDown}" v-if="!isLeaf"></span>
+            <span class="triangle iconfont icon-radiu-arrow-r" :class="{'down':iconDown}" v-if="!node.isLeaf"></span>
+            <!-- 阻止冒泡 -->
+            <!-- <im-checkbox @click.native.stop></im-checkbox> -->
             <node-content :label="node.label"></node-content>
         </div>
         <im-collapse-transition :initStatus="expanded">
             <div class="im-tree-node_child" v-show="expanded">
-                <im-tree-node v-for="child in node.children" :isLeaf="!child.children" :node="child" :key="child.label"></im-tree-node>    
+                <im-tree-node v-for="child in node.childrenNodes" :node="child" :key="child.id"></im-tree-node>
             </div>
         </im-collapse-transition>
     </div>
 </template>
 
 <script>
+// import ImCheckbox from "@/components/ImCheckbox.vue"
 import ImCollapseTransition from "@/components/im-collapse-transition.js"
     export default {
         name:"ImTreeNode",
         components:{
+            // ImCheckbox,
             ImCollapseTransition,
             // 渲染NodeContent
             NodeContent:{
@@ -37,10 +41,6 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
                 default(){
                     return {};
                 }
-            },
-            isLeaf:{
-                type:Boolean,
-                default:false
             }
         },
         data(){
@@ -60,7 +60,7 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
                 })
             },
             /**
-             * 箭头状态-方向
+             * 箭头状态处理-方向
              */
             handleIconStatus(){
                 this.iconDown = this.expanded;
@@ -92,5 +92,4 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
 .im-tree-node_child{
     margin-left:10px;
 }
-
 </style>
