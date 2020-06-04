@@ -20,6 +20,8 @@
                     :disabled="item.disabled"
                     :label="item.label">{{item.label}}</im-checkbox>
             </im-checkbox-group>
+        </div>
+        <div class="group-unit">
             <im-checkbox-group v-model="im_checkList2">
                 <!-- 嵌套一个父组件,检测子组件在获取父的时候是否有影响 -->
                 <empty-test>
@@ -60,7 +62,7 @@
             </im-checkbox-group>
         </div>
 
-        <div class="title2" data-index="3">indeterminate状态</div>
+        <div class="title2" data-index="4">indeterminate状态</div>
         
         <div class="group-unit">
             <im-checkbox 
@@ -78,7 +80,7 @@
             </im-checkbox-group>
         </div>
 
-        <div class="title">可选数量限制</div>
+        <div class="title">可选数量限制<span class="tips"> (2-4) </span></div>
         <im-checkbox-group
         v-model="im_checkList6"
         :min="2"
@@ -114,6 +116,7 @@ import EmptyTest from '@/components/EmptyTest.vue'
                     {name:'el_checkbox2',disabled:false,label:3,checked:false}
                 ],
                 // 复选框组
+                // （1）禁用属性在 子标签上
                 im_checkList1:['选项1'],
                 im_checkbox_group1:[
                     {name:'im_checkbox1',disabled:false,label:"选项1"},
@@ -123,22 +126,24 @@ import EmptyTest from '@/components/EmptyTest.vue'
                 im_checkList2:['选项1'],
                 im_checkbox_group2:[
                     {name:'im_checkbox2',disabled:false,label:"选项1"},
-                    {name:'im_checkbox2',disabled:true,label:"选项2"},
+                    {name:'im_checkbox2',disabled:false,label:"选项2"},
                     {name:'im_checkbox2',disabled:false,label:"选项3"}
                 ],
+                // （2）禁用属性在 父标签上
                 im_checkList3:['选项2'],
                 im_checkbox_group3:[
                     {name:'im_checkbox3',disabled:false,label:"选项1"},
                     {name:'im_checkbox3',disabled:true,label:"选项2"},
                     {name:'im_checkbox3',disabled:false,label:"选项3"}
                 ],
+                // （3）name属性在 父标签上
                 im_checkList4:['选项2'],
                 im_checkbox_group4:[
                     {disabled:false,label:"选项1"},
                     {disabled:true,label:"选项2"},
                     {disabled:false,label:"选项3"}
                 ],
-                // indeterminate 状态
+                // （4）indeterminate 状态
                 im_indeterminate:{
                     checkAll:false,
                     indeterminate:true
@@ -149,6 +154,7 @@ import EmptyTest from '@/components/EmptyTest.vue'
                     {disabled:true,label:"选项2"},
                     {disabled:false,label:"选项3"}
                 ],
+                // 可选数量限制
                 im_checkList6:['选项2'],
                 im_checkbox_group6:[
                     {disabled:false,label:"选项1"},
@@ -168,9 +174,10 @@ import EmptyTest from '@/components/EmptyTest.vue'
                 });
                 return result;
             },
-            handleCheckAll(val){
+            handleCheckAll(val,evt){
                 this.im_checkList5 = val ? this.getLabel(this.im_checkbox_group5):[];
                 this.im_indeterminate.indeterminate = false;
+
             },
             handleIndeterminate(check_arr){
                 let check_list_len = this.im_checkbox_group5.length;

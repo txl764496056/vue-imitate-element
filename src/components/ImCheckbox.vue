@@ -7,6 +7,7 @@
         :value="label"
         :checked="isChecked"
         v-model="isChecked"
+        @change="handleChange"
         />
         <span></span>
         <slot></slot>
@@ -18,7 +19,7 @@
         name:"ImCheckbox",
         model:{
             prop:['checked'],
-            event:'change'
+            event:'input' //用input，在树形控件的时候，需要用change并带入event参数
         },
         props:{
             name:{
@@ -67,30 +68,39 @@
                     if(this.isGroup()){
                         this.group_parent.$emit('changeCheckedList',this.label);
                     }else{
-                        this.$emit('change', val);
+                        this.$emit('input', val);
                     }
                 }
             },
             /**
-             * 最小选项数限制：
-             *  1、已选择数量<=min  ，则已选择的禁用（表示不能被取消选择）
-             *  2、必须是已选择的禁用，未被选择的是可选的
-             * 最大选项数限制：
-             *  1、已选择数量>=max,则还未选择的禁用（表示不能再多选择）
-             *  2、必须是未选择的禁用
+             * 1、根据组(父)标签是否含有禁用属性判断
+             * 2、根据选中数量范围判断
+             * 3、根据单选按钮本身是否是禁用判断
              */
             isDisabled(){
-                 return this.isGroup() ? (
-                     this.group_parent.disabled ||
-                     ((this.group_parent.min>=this.group_parent.checked_list.length)&&this.isChecked) ||
-                     (this.group_parent.max<=this.group_parent.checked_list.length&&!this.isChecked)
-                     ):this.disabled;
+                return (this.isGroup()&&this.group_parent.disabled) || this.isLimitDisabled() || this.disabled;
             },
             checkboxName(){
                 return this.isGroup()&&this.group_parent.name ? this.group_parent.name:this.name;
             },
         },
         methods:{
+            /**
+             * 数量限制的时候，选项禁用情况
+             * 再有设置组(父的前提下)
+             * 最小选项数限制：
+             *  （1）已选择数量<=min  ，则已选择的禁用（表示不能被取消选择）
+             *  （2）必须是已选择的禁用，未被选择的是可选的
+             * 最大选项数限制：
+             *  （1）已选择数量>=max,则还未选择的禁用（表示不能再多选择）
+             *  （2）必须是未选择的禁用
+             *  （3）max>0
+             */
+            isLimitDisabled(){
+               return this.isGroup() && 
+                    ( (this.group_parent.checked_list.length<=this.group_parent.min&&this.isChecked) ||
+                    ((this.group_parent.max>0&&this.group_parent.checked_list.length>=this.group_parent.max)&&!this.isChecked) );
+            },
             isGroup(){
                 let parent = this.$parent;
                 while(parent){
@@ -102,6 +112,12 @@
                     }
                 }
                 return false;
+            },
+            handleChange(evt){
+                // 若直接发送事件，会导致发送的数据是修改之前的，input和change发送的结果值是相反的
+                this.$nextTick(()=>{
+                    this.$emit('change',this.isChecked,evt)
+                })
             }
         }
     }
