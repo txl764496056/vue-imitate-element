@@ -40,7 +40,7 @@ export default class Node{
     }
 
     /**
-     * 
+     * 生成Node类型的子节点。
      */
     insertChild(data){
         let node_data = data.data;
@@ -53,5 +53,23 @@ export default class Node{
             isLeaf:!(node_data.children)
         });
         this.childrenNodes.push(child);
+    }
+
+    /**
+     * 
+     * 设置属性控件每个复选框状态（递归调用）
+     * 说明：会从被点击的选项开始，向上遍历祖先辈，向下遍历子孙辈
+     * 
+     * element源码setChecked(value,deep,recursion,passValue)有4个参数如下：
+     * @param value:点击选项时，传入值
+     * @param deep:是否深度遍历（子节点），并设置选中状态
+     * @param recursion:是否往上遍历父及祖先节点，并设置选中状态
+     * @param passValue:--------分析不精确，需要继续考究^_^
+     *                  当前节点/父节点/祖先节点的选中状态，
+     *                  (1) 没有传入值时，会根据当前节点的value值计算
+     *                  说明：这个是判断子节点或者孙子节点选框状态的判断条件之一
+     */
+    setChecked(value){
+        // console.log(value);
     }
 }

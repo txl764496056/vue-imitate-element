@@ -33,7 +33,6 @@ import  Node from "./node.js";
             // });
             // this.root = this.store.root;
             this.treeNode = new Node({data:this.data});
-            console.log(this.treeNode);
         }
     }
 </script>

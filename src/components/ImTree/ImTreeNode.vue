@@ -6,6 +6,7 @@
         </div>
         <im-collapse-transition :initStatus="expanded">
             <div class="im-tree-node_child" v-show="expanded">
+                <!-- 递归 -->
                 <im-tree-node v-for="child in node.children" :isLeaf="!child.children" :node="child" :key="child.label"></im-tree-node>    
             </div>
         </im-collapse-transition>

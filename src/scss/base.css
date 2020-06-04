@@ -53,6 +53,13 @@
   font-weight: normal;
 }
 
+.waring {
+  color: #ff0000;
+  font-size: 14px;
+  background-color: #ffe8e8;
+  padding: 10px;
+}
+
 .group-unit {
   box-shadow: 0 0 3px rgba(125, 125, 125, 0.15);
   margin: 20px 0;

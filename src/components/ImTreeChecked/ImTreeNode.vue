@@ -3,11 +3,14 @@
         <div class="im-tree-node_label" @click="handleMenuList">
             <span class="triangle iconfont icon-radiu-arrow-r" :class="{'down':iconDown}" v-if="!node.isLeaf"></span>
             <!-- 阻止冒泡 -->
-            <!-- <im-checkbox @click.native.stop></im-checkbox> -->
+            <im-checkbox 
+            @click.native.stop
+            @change="handleCheckedStatus"></im-checkbox>
             <node-content :label="node.label"></node-content>
         </div>
         <im-collapse-transition :initStatus="expanded">
             <div class="im-tree-node_child" v-show="expanded">
+                <!-- 递归 -->
                 <im-tree-node v-for="child in node.childrenNodes" :node="child" :key="child.id"></im-tree-node>
             </div>
         </im-collapse-transition>
@@ -15,14 +18,14 @@
 </template>
 
 <script>
-// import ImCheckbox from "@/components/ImCheckbox.vue"
+import ImCheckbox from "@/components/ImCheckbox.vue"
 import ImCollapseTransition from "@/components/im-collapse-transition.js"
     export default {
         name:"ImTreeNode",
         components:{
-            // ImCheckbox,
+            ImCheckbox,
             ImCollapseTransition,
-            // 渲染NodeContent
+            // 渲染NodeContent组件
             NodeContent:{
                 props:{
                     label:{
@@ -36,6 +39,7 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
             }
         },
         props:{
+            // 当前节点对象
             node:{
                 type:Object,
                 default(){
@@ -64,6 +68,12 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
              */
             handleIconStatus(){
                 this.iconDown = this.expanded;
+            },
+            /**
+             * 点击复选框，更新复选框状态
+             */
+            handleCheckedStatus(value,evt){
+                this.node.setChecked(evt.target.checked);
             }
         }
     }
