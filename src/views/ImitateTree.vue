@@ -2,9 +2,9 @@
     <div>
         <div class="title">树形控件-简洁版<span class="tips">（数据遍历）</span></div>
         <im-tree :data="data"></im-tree>
-        <div class="title">树形控件-节点处理版本<span class="tips">（处理数据生成节点）</span></div>
+        <div class="title">树形控件-节点版本<span class="tips">（处理数据生成节点）</span></div>
         <im-tree-advanced :data="data2"></im-tree-advanced>
-        <div class="title">树形控件-节点处理版本<span class="tips">（处理数据生成节点）</span></div>
+        <div class="title">树形控件-节点带复选框版本<span class="tips">（处理数据生成节点）</span></div>
         <im-tree-checked :data="data3"></im-tree-checked>
     </div>
 </template>

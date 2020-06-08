@@ -42,8 +42,8 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
         },
         data(){
             return {
-                expanded:false,
-                iconDown:false
+                 expanded:false, //是否展开当前节点，false：折叠,true：展开
+                iconDown:false //箭头方向，false：向右，true：向下
             }
         },
         methods:{
