@@ -19,6 +19,9 @@ $content-color:#666;
 .mt20{
     margin-top:20px;
 }
+.mb10{
+    margin-bottom:10px;
+}
 
 .compare-box{
     display:flex;height:100%;
@@ -60,6 +63,22 @@ $content-color:#666;
 
 .tips{
     color:#d63c3c;font-size:12px;
+}
+
+// 解释说明段落
+.comm{
+   font-size:13px;
+   display:flex;
+   align-items: center;
+   &::before{
+       content:"";
+       display:inline-block;
+       width:6px;
+       height:6px;
+       border-radius:50%;
+       background-color:rgb(255, 127, 22);
+       margin-right:5px;
+   }
 }
 
 .im-icon-clear{

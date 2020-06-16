@@ -3,6 +3,10 @@
   margin-top: 20px;
 }
 
+.mb10 {
+  margin-bottom: 10px;
+}
+
 .compare-box {
   display: flex;
   height: 100%;
@@ -79,6 +83,22 @@
 .tips {
   color: #d63c3c;
   font-size: 12px;
+}
+
+.comm {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.comm::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ff7f16;
+  margin-right: 5px;
 }
 
 .im-icon-clear {
