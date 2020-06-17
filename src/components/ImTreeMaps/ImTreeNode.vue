@@ -73,7 +73,7 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
                     this.expanded = val;
                     this.handleIconStatus();
                 },
-                immediate:true //设置之后，默认选项才会展开
+                immediate:true //设置之后，初始化时默认选项才会展开
             }
         }
     }

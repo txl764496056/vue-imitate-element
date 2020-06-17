@@ -2,7 +2,7 @@
     <div class="im-tree-node">
         <div class="im-tree-node_label" @click="handleMenuList">
             <span class="triangle iconfont icon-radiu-arrow-r" :class="{'down':iconDown}" v-if="!node.isLeaf"></span>
-            <!-- 阻止冒泡 -->
+             <!-- 阻止冒泡 -->
             <im-checkbox 
             @click.native.stop
             @change="handleCheckedStatus"></im-checkbox>
@@ -23,8 +23,8 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
     export default {
         name:"ImTreeNode",
         components:{
-            ImCheckbox,
             ImCollapseTransition,
+            ImCheckbox,
             // 渲染NodeContent组件
             NodeContent:{
                 props:{
@@ -56,12 +56,15 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
         methods:{
             /**
              * 下拉展开折叠处理
+             *  1、节点是叶子节点：不做任何处理
             */
             handleMenuList(){
-                this.$nextTick(()=>{
-                    this.expanded = !this.expanded;
-                    this.handleIconStatus();
-                })
+                if(this.node.isLeaf){return;}
+                if(this.expanded){
+                    this.node.collapse();
+                }else{
+                    this.node.expand();
+                }
             },
             /**
              * 箭头状态处理-方向
@@ -69,11 +72,15 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
             handleIconStatus(){
                 this.iconDown = this.expanded;
             },
-            /**
-             * 点击复选框，更新复选框状态
-             */
-            handleCheckedStatus(value,evt){
-                this.node.setChecked(evt.target.checked);
+            handleCheckedStatus(){}
+        },
+        watch:{
+            'node.expanded':{
+                handler:function(val){
+                    this.expanded = val;
+                    this.handleIconStatus();
+                },
+                immediate:true //设置之后，初始化时默认选项才会展开
             }
         }
     }
