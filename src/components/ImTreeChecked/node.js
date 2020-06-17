@@ -1,4 +1,48 @@
+
 let nodeIdSeed = 0;
+
+/**
+ * 子节点选中状态
+ * 
+ */
+function getChildStatus(node){
+    let all = true; //是否全选中,true：全选中
+    let none = true; //是否全没选中，true:全没选中
+    let children = node.childrenNodes;
+    for(let i=0;i<children.length;i++){
+        // 有选中的或者有半选状态的，则none=false
+        if( children[i].checked || children[i].indeterminate ){
+            none = false;
+        }
+        // 有没选中的或者有半选状态的，则all=false
+        if( !children[i].checked || children[i].indeterminate ){
+            all = false;
+        }
+    }
+    return {all,none,half:!all&&!none};
+}
+
+/**
+ * 重新设置父级选框状态
+ */
+function reInnitChecked(node){
+    let {all,none,half} = getChildStatus(node);
+    if(all){
+        node.checked = true;
+        node.indeterminate = false;
+    }else if(none){
+        node.checked = false;
+        node.indeterminate = false;
+    }else if(half){
+        node.checked = false;
+        node.indeterminate = true;
+    }
+
+    let parent = node.parent;
+    if(parent){
+        reInnitChecked(parent);
+    }
+}
 export default class Node{
     constructor(options){
 
@@ -7,6 +51,9 @@ export default class Node{
         this.isLeaf = false;//是否是叶子节点
         this.level = 0; //节点级别
         this.parent = null;//当前节点的父节点
+
+        this.indeterminate = false;//表示复选框为不确定状态
+        this.checked = false; //当前节点是否选中
 
         this.expanded = false; //当前节点是否展开,false：折叠，true:展开
 
@@ -89,5 +136,48 @@ export default class Node{
      */
     collapse(){
         this.expanded = false;
+    }
+
+    /**
+     * 节点选中状态设置
+     * val:选中状态值，true:选中，false:未选中
+     */
+    setChecked(val){
+
+        // 不确定状态设置
+        // let half = false;
+    //    if(isParent){
+    //         let {all,none,half} = getChildStatus(this);
+    //         if(all){
+    //             this.checked = true;
+    //             this.indeterminate = false;
+    //         }else if(none){
+    //             this.checked = false;
+    //             this.indeterminate = false;
+    //         }else if(half){
+    //             this.checked = false;
+    //             this.indeterminate = true;
+    //         }
+    //     }else{
+            this.checked = val;
+        // }
+        
+        // 遍历子节点
+        // if( !isParent ){
+            let children = this.childrenNodes;
+            for(let i=0;i<children.length;i++){
+                // 查询并设置子节点
+                children[i].checked = val;
+                if(children[i].childrenNodes.length>0){
+                    children[i].setChecked(val);
+                }
+            }
+        // }
+
+        // 遍历父节点
+        if(this.parent){
+            // this.parent.setChecked(val,true);
+            reInnitChecked(this.parent);
+        }
     }
 }

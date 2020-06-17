@@ -30,7 +30,10 @@
         <div class="title">
             树形控件-节点带复选框版本
         </div>
-        <im-tree-checked :data="data4" nodeKey="key"></im-tree-checked>
+        <im-tree-checked
+         :data="data4" 
+         nodeKey="key"
+         :default-expand-keys="[2]"></im-tree-checked>
     </div>
 </template>
 
@@ -140,10 +143,20 @@ import ImTreeChecked from "@/components/ImTreeChecked";
                         children:[{
                             label:'三级 1-1-1',
                             key:3
+                        },{
+                            label:'三级 1-1-2',
+                            key:12
                         }]
                     },{
                         label:'二级 1-2',
                         key:4
+                    },{
+                        label:'二级 1-3',
+                        key:10,
+                        children:[{
+                            label:'三级 1-3-1',
+                            key:11
+                        }]
                     }]
                 },{
                     label:'一级 2',

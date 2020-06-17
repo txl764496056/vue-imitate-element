@@ -5,7 +5,9 @@
              <!-- 阻止冒泡 -->
             <im-checkbox 
             @click.native.stop
-            @change="handleCheckedStatus"></im-checkbox>
+            @change="handleCheckedStatus"
+            :indeterminate="indeterminate"
+            v-model="checked"></im-checkbox>
             <node-content :label="node.label"></node-content>
         </div>
         <im-collapse-transition :initStatus="expanded">
@@ -49,6 +51,8 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
         },
         data(){
             return {
+                indeterminate:false,//不确定状态
+                checked:false, //复选框是否选中
                 expanded:false, //是否展开当前节点，false：折叠,true：展开
                 iconDown:false //箭头方向，false：向右，true：向下
             }
@@ -72,7 +76,14 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
             handleIconStatus(){
                 this.iconDown = this.expanded;
             },
-            handleCheckedStatus(){}
+            /**
+             * 按钮点击事件：选中/取消
+             */
+            handleCheckedStatus(){
+                // if(this.checked){
+                    this.node.setChecked(this.checked);
+                // }
+            }
         },
         watch:{
             'node.expanded':{
@@ -81,6 +92,18 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
                     this.handleIconStatus();
                 },
                 immediate:true //设置之后，初始化时默认选项才会展开
+            },
+            'node.checked':{
+                handler:function(val){
+                    this.checked = val;
+                },
+                immediate:true
+            },
+            'node.indeterminate':{
+                handler:function(val){
+                    this.indeterminate = val;
+                },
+                immediate:true
             }
         }
     }
