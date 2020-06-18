@@ -21,6 +21,11 @@ export default class TreeStore{
             store:this
         });
 
+       // 默认选中项
+       if(this.defaultCheckedKeys.length>0){
+            this._initDefaultCheckedKeys();
+        }
+
     }
     /**
      * 将生成的节点存入节点映射对象
@@ -30,4 +35,18 @@ export default class TreeStore{
        if( !key ) return ;
        this.nodesMap[node.data.key] = node;
     }
+
+    /**
+     * 默认选中项初始化
+     */
+    _initDefaultCheckedKeys(){
+        const maps = this.nodesMap;
+        const defaultChecked = this.defaultCheckedKeys;
+        defaultChecked.forEach((key)=>{
+            if(maps[key]){
+                maps[key].setChecked(true,true);
+            }
+        })
+    }
+
 }

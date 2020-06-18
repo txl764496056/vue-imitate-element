@@ -29,11 +29,14 @@
         <!-- 4、 -->
         <div class="title">
             树形控件-节点带复选框版本
+            <span class="tips">(有禁用选项)</span>
         </div>
         <im-tree-checked
          :data="data4" 
          nodeKey="key"
          :default-expand-keys="[2]"></im-tree-checked>
+         <!-- :default-checked-keys="[12,2]" -->
+
     </div>
 </template>
 
@@ -140,16 +143,19 @@ import ImTreeChecked from "@/components/ImTreeChecked";
                     children:[{
                         label:'二级 1-1',
                         key:2,
+                        disabled:true,
                         children:[{
                             label:'三级 1-1-1',
                             key:3
                         },{
                             label:'三级 1-1-2',
-                            key:12
+                            key:12,
+                            disabled:true
                         }]
                     },{
                         label:'二级 1-2',
-                        key:4
+                        key:4,
+                        disabled:true
                     },{
                         label:'二级 1-3',
                         key:10,

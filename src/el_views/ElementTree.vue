@@ -60,7 +60,6 @@
                     children: [{
                         id:2,
                         label: '二级 1-1',
-                        disabled:true,
                         children: [{
                             id:3,
                             label: '三级 1-1-1',

@@ -2,10 +2,11 @@
     <div class="im-tree-node">
         <div class="im-tree-node_label" @click="handleMenuList">
             <span class="triangle iconfont icon-radiu-arrow-r" :class="{'down':iconDown}" v-if="!node.isLeaf"></span>
-             <!-- 阻止冒泡 -->
+             <!-- 阻止冒泡 !!disabled 保证数据传入的是boolean值-->
             <im-checkbox 
             @click.native.stop
             @change="handleCheckedStatus"
+            :disabled="!!node.disabled"
             :indeterminate="indeterminate"
             v-model="checked"></im-checkbox>
             <node-content :label="node.label"></node-content>
@@ -81,11 +82,14 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
              */
             handleCheckedStatus(){
                 // if(this.checked){
-                    this.node.setChecked(this.checked);
+                    this.node.setChecked(this.checked,true);
                 // }
             }
         },
         watch:{
+             /**
+              * node节点展开折叠控制属性监听
+              */
             'node.expanded':{
                 handler:function(val){
                     this.expanded = val;
@@ -93,12 +97,18 @@ import ImCollapseTransition from "@/components/im-collapse-transition.js"
                 },
                 immediate:true //设置之后，初始化时默认选项才会展开
             },
+            /**
+             * node节点选中/取消选中属性监听
+             */
             'node.checked':{
                 handler:function(val){
                     this.checked = val;
                 },
                 immediate:true
             },
+            /**
+             * node节点复选框不确定状态属性监听
+             */
             'node.indeterminate':{
                 handler:function(val){
                     this.indeterminate = val;

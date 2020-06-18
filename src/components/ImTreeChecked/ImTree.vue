@@ -20,6 +20,12 @@ import TreeStore from "./tree-store.js";
                     return [];
                 }
             },
+            defaultCheckedKeys:{ //默认选中项的key值数组
+                type:Array,
+                default:function(){
+                    return [];
+                }
+            },
             /**
              * 整颗树的数据
              */
@@ -42,7 +48,8 @@ import TreeStore from "./tree-store.js";
             this.store = new TreeStore({
                 data:this.data, //节点数据
                 key:this.nodeKey, //节点唯一标识的字段名
-                defaultExpandKeys:this.defaultExpandKeys //默认展开项的key值
+                defaultExpandKeys:this.defaultExpandKeys, //默认展开项的key值数组
+                defaultCheckedKeys:this.defaultCheckedKeys //默认选中项的key值数组
             });
             this.treeNode = this.store.treeNode;
         },
