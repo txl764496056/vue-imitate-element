@@ -1,6 +1,6 @@
 <template>
     <label class="im-checkbox" 
-    :class="{'light':isChecked&&!isDisabled,'helf':!isChecked&&!isDisabled&&indeterminate}">
+    :class="{'light':isChecked&&!isDisabled,'helf':!isChecked&&indeterminate,'helf-gray':isDisabled}">
         <input type="checkbox" 
         :name="checkboxName"
         :disabled="isDisabled"
@@ -140,17 +140,51 @@
         }
     }
     input{opacity:0;width:0;height:0;}
-    input:checked+span{background-color:$theme-color;border-color:$theme-color;}
-    input:checked+span::before{border-color:#fff;}
-    input:disabled:checked+span,input:disabled+span{background-color:theme-color(0.1);border-color:$color-dd;}
-    input:disabled:checked+span::before{border-color:$color-bb;}
+    // 禁选按钮颜色
+    @mixin disabled-btn{
+        background-color:theme-color(0.1);border-color:$color-dd;
+    }
+    // 未禁选按钮颜色
+    @mixin undisabled-btn{
+        background-color:$theme-color;border-color:$theme-color;
+    }
+    // 未禁选-选中
+    input:checked+span{
+        @include undisabled-btn;
+        &::before{
+            border-color:#fff;
+        }
+    }
+    // 禁选-选中
+    input:disabled:checked+span{
+        @include disabled-btn;
+        &::before{
+            border-color:$color-bb;
+        }
+    }
+    // 禁选-未选中
+    input:disabled+span{
+        @include disabled-btn;
+    }
+
+    // 高亮
     &.light{
         color:$theme-color;
     }
     // 半选
     &.helf{
+        // 禁选
+        &.helf-gray{
+            input+span{
+                @include disabled-btn;
+                &::before{
+                    border-left:none;border-color:$color-bb;
+                }
+            }
+        }
+        // 未禁选
         input+span{
-            background-color:$theme-color;border-color:$theme-color;
+            @include undisabled-btn;
             &::before{
                 border-left:none;border-color:#fff;
                 transform:rotate(0) translate(40%,-100%);
